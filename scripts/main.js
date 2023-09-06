@@ -1,97 +1,801 @@
-function p(d,b,a,c){d.s.Ga(d.aa,b,a,c,void 0)}function w(d,b,a,c){d.s.C?p(d,b,a,c):d.s.Xb()._OnMessageFromDOM({type:"event",component:d.aa,handler:b,dispatchOpts:c||null,data:a,responseId:null})}function x(d,b,a){d.s.j(d.aa,b,a)}function aa(d,b){for(const [a,c]of b)x(d,a,c)}window.ma=class{constructor(d,b){this.s=d;this.aa=b}gb(){}};window.cd=class{constructor(){}};"use strict";class ba{constructor(d){this.Oa=d;this.Qa=!1;this.Ta=!0}}
-function ca(d,b){const a=b.elementId,c=d.Aa(a,b),e=new ba(c);d.ba.set(a,e);c.style.boxSizing="border-box";c.style.display="none";e.Ta=!!b.isVisible;b=d.Ja(c);b.addEventListener("focus",()=>{y(d,"elem-focused",a)});b.addEventListener("blur",()=>{y(d,"elem-blurred",a)});d.qa&&document.body.appendChild(c)}function da(d,b,a){x(d,b,c=>{const e=A(d,c.elementId);return a(e,c)})}function A(d,b){d=d.ba.get(b);if(!d)throw Error(`no element with id ${b}`);return d.Oa}
-function y(d,b,a,c){c||(c={});c.elementId=a;p(d,b,c)}function B(d,b,a,c){c||(c={});c.elementId=a;w(d,b,c)}
-window.ib=class extends self.ma{constructor(d,b){super(d,b);this.ba=new Map;this.qa=!0;aa(this,[["create",a=>ca(this,a)],["destroy",a=>{a=a.elementId;const c=A(this,a);this.qa&&c.parentElement.removeChild(c);this.ba.delete(a)}],["set-visible",a=>{if(this.qa){var c=this.ba.get(a.elementId),e=c.Oa;c.Qa?e.style.display=a.isVisible?"":"none":c.Ta=!!a.isVisible}}],["update-position",a=>{if(this.qa){var c=this.ba.get(a.elementId),e=c.Oa;e.style.left=a.left+"px";e.style.top=a.top+"px";e.style.width=a.width+
-"px";e.style.height=a.height+"px";a=a.fontSize;null!==a&&(e.style.fontSize=a+"em");c.Qa||(c.Qa=!0,c.Ta&&(e.style.display=""))}}],["update-state",a=>{const c=A(this,a.elementId);this.Y(c,a)}],["focus",a=>{const c=this.Ja(A(this,a.elementId));a.focus?c.focus():c.blur()}],["set-css-style",a=>{const c=A(this,a.elementId),e=a.prop;a=a.val;e.startsWith("--")?c.style.setProperty(e,a):c.style[e]=a}],["set-attribute",a=>{A(this,a.elementId).setAttribute(a.name,a.val)}],["remove-attribute",a=>{A(this,a.elementId).removeAttribute(a.name)}]]);
-da(this,"get-element",a=>a)}Aa(){throw Error("required override");}Y(){throw Error("required override");}Ja(d){return d}};"use strict";const ea=/(iphone|ipod|ipad|macos|macintosh|mac os x)/i.test(navigator.userAgent),C=/android/i.test(navigator.userAgent),fa=/safari/i.test(navigator.userAgent)&&!/(chrome|chromium|edg\/|OPR\/|nwjs)/i.test(navigator.userAgent);let ha=0;
-function D(d){const b=document.createElement("script");b.async=!1;b.type="module";return d.Ic?new Promise(a=>{const c="c3_resolve_"+ha;++ha;self[c]=a;b.textContent=d.Vc+`\n\nself["${c}"]();`;document.head.appendChild(b)}):new Promise((a,c)=>{b.onload=a;b.onerror=c;b.src=d;document.head.appendChild(b)})}let ia=!1,ka=!1;function la(){if(!ia){try{new Worker("blob://",{get type(){ka=!0}})}catch(d){}ia=!0}return ka}let F=new Audio;
-const na={"audio/webm; codecs=opus":!!F.canPlayType("audio/webm; codecs=opus"),"audio/ogg; codecs=opus":!!F.canPlayType("audio/ogg; codecs=opus"),"audio/webm; codecs=vorbis":!!F.canPlayType("audio/webm; codecs=vorbis"),"audio/ogg; codecs=vorbis":!!F.canPlayType("audio/ogg; codecs=vorbis"),"audio/mp4":!!F.canPlayType("audio/mp4"),"audio/mpeg":!!F.canPlayType("audio/mpeg")};F=null;async function oa(d){d=await pa(d);return(new TextDecoder("utf-8")).decode(d)}
-function pa(d){return new Promise((b,a)=>{const c=new FileReader;c.onload=e=>b(e.target.result);c.onerror=e=>a(e);c.readAsArrayBuffer(d)})}const H=[];let I=0;window.RealFile=window.File;const J=[],L=new Map,M=new Map;let qa=0;const ra=[];self.runOnStartup=function(d){if("function"!==typeof d)throw Error("runOnStartup called without a function");ra.push(d)};const sa=new Set(["cordova","playable-ad","instant-games"]);let ta=!1;
-window.O=class d{constructor(b){this.C=b.Xc;this.ea=null;this.B="";this.S=b.Sc;this.ia={};this.Va=this.U=null;this.ra=[];this.u=this.ga=null;this.xb=!1;this.ca=null;this.R=-1;this.oc=()=>this.dc();this.Ya=[];this.l=b.Db;this.Sa="file"===location.protocol.substr(0,4);!this.C||"undefined"!==typeof OffscreenCanvas&&navigator.userActivation&&la()||(this.C=!1);this.C&&fa&&(this.C=!1);if("playable-ad"===this.l||"instant-games"===this.l)this.C=!1;if("cordova"===this.l&&this.C)if(C){const a=/Chrome\/(\d+)/i.exec(navigator.userAgent);
-a&&90<=parseInt(a[1],10)||(this.C=!1)}else this.C=!1;this.sa=this.J=null;"html5"!==this.l||window.isSecureContext||console.warn("[Construct] Warning: the browser indicates this is not a secure context. Some features may be unavailable. Use secure (HTTPS) hosting to ensure all features are available.");this.j("runtime","cordova-fetch-local-file",a=>this.$b(a));this.j("runtime","create-job-worker",()=>this.ac());"cordova"===this.l?document.addEventListener("deviceready",()=>this.ob(b)):this.ob(b)}Lb(){return ea&&
-"cordova"===this.l}Fa(){const b=navigator.userAgent;return ea&&sa.has(this.l)||navigator.standalone||/crios\/|fxios\/|edgios\//i.test(b)}Jb(){return C}jb(){return C&&sa.has(this.l)}async ob(b){"macos-wkwebview"===this.l&&this.ic();if("playable-ad"===this.l){this.J=self.c3_base64files;this.sa={};await this.Tb();for(let c=0,e=b.V.length;c<e;++c){var a=b.V[c];this.sa.hasOwnProperty(a)?b.V[c]={Ic:!0,Vc:this.sa[a]}:this.J.hasOwnProperty(a)&&(b.V[c]=URL.createObjectURL(this.J[a]))}b.ya=[]}if("nwjs"===this.l&&
-self.nw&&self.nw.App.manifest["c3-steam-mode"]){let c=0;this.Pb(()=>{c++;document.body.style.opacity=0===c%2?"1":"0.999"})}b.Rc?this.B=b.Rc:(a=location.origin,this.B=("null"===a?"file:///":a)+location.pathname,a=this.B.lastIndexOf("/"),-1!==a&&(this.B=this.B.substr(0,a+1)));b.Zc&&(this.ia=b.Zc);a=new MessageChannel;this.ea=a.port1;this.ea.onmessage=c=>this._OnMessageFromRuntime(c.data);window.c3_addPortMessageHandler&&window.c3_addPortMessageHandler(c=>this.cc(c));this.ca=new self.Mb(this);await ua(this.ca);
-"object"===typeof window.StatusBar&&window.StatusBar.hide();if("object"===typeof window.AndroidFullScreen)try{await new Promise((c,e)=>{window.AndroidFullScreen.immersiveMode(c,e)})}catch(c){console.error("Failed to enter Android immersive mode: ",c)}this.C?await this.Zb(b,a.port2):await this.Yb(b,a.port2)}Ka(b){b=this.ia.hasOwnProperty(b)?this.ia[b]:b.endsWith("/workermain.js")&&this.ia.hasOwnProperty("workermain.js")?this.ia["workermain.js"]:"playable-ad"===this.l&&this.J.hasOwnProperty(b)?this.J[b]:
-b;b instanceof Blob&&(b=URL.createObjectURL(b));return b}async Ba(b,a,c){if(b.startsWith("blob:"))return new Worker(b,c);if("cordova"===this.l&&this.Sa)return b=await this.za(c.Hc?b:this.S+b),new Worker(URL.createObjectURL(new Blob([b],{type:"application/javascript"})),c);b=new URL(b,a);if(location.origin!==b.origin){b=await fetch(b);if(!b.ok)throw Error("failed to fetch worker script");b=await b.blob();return new Worker(URL.createObjectURL(b),c)}return new Worker(b,c)}I(){return Math.max(window.innerWidth,
-1)}G(){return Math.max(window.innerHeight,1)}nb(b){var a=this.B,c=location.href,e=this.I(),f=this.G(),h=window.devicePixelRatio,k=d.X(),l=b.Nd,m=window.cr_previewImageBlobs||this.J,g=window.cr_previewProjectFileBlobs,t=window.cr_previewProjectFiles,E=window.od||"";b=b.Db;var Y=(new URLSearchParams(self.location.search)).has("debug"),v=this.ca;return{runtimeBaseUrl:a,previewUrl:c,windowInnerWidth:e,windowInnerHeight:f,devicePixelRatio:h,isFullscreen:k,projectData:l,previewImageBlobs:m,previewProjectFileBlobs:g,
-previewProjectFileSWUrls:t,swClientId:E,exportType:b,isDebug:Y,ife:!!self.Bd,jobScheduler:{inputPort:v.Ra,outputPort:v.Xa,maxNumWorkers:v.mc},supportedAudioFormats:na,opusWasmScriptUrl:window.cr_opusWasmScriptUrl||this.S+"opus.wasm.js",opusWasmBinaryUrl:window.cr_opusWasmBinaryUrl||this.S+"opus.wasm.wasm",isFileProtocol:this.Sa,isiOSCordova:this.Lb(),isiOSWebView:this.Fa(),isFBInstantAvailable:"undefined"!==typeof self.FBInstant}}async Zb(b,a){const c=this.Ka(b.Yc);"preview"===this.l?(this.U=new Worker("previewworker.js",
-{type:"module",name:"Runtime"}),await new Promise((k,l)=>{const m=g=>{this.U.removeEventListener("message",m);g.data&&"ok"===g.data.type?k():l()};this.U.addEventListener("message",m);this.U.postMessage({type:"construct-worker-init","import":(new URL(c,this.B)).toString()})})):this.U=await this.Ba(c,this.B,{type:"module",name:"Runtime",Hc:!0});this.u=document.createElement("canvas");this.u.style.display="none";const e=this.u.transferControlToOffscreen();document.body.appendChild(this.u);window.c3canvas=
-this.u;self.C3_InsertHTMLPlaceholders&&self.C3_InsertHTMLPlaceholders();let f=b.ya||[],h=b.V;f=await Promise.all(f.map(k=>this.P(k)));h=await Promise.all(h.map(k=>this.P(k)));if("cordova"===this.l)for(let k=0,l=b.xa.length;k<l;++k){const m=b.xa[k],g=m[0];if(g===b.$a||"scriptsInEvents.js"===g||g.endsWith("/scriptsInEvents.js"))m[1]=await this.P(g)}this.U.postMessage(Object.assign(this.nb(b),{type:"init-runtime",isInWorker:!0,messagePort:a,canvas:e,workerDependencyScripts:f,engineScripts:h,projectScripts:b.xa,
-mainProjectScript:b.$a,projectScriptsStatus:self.C3_ProjectScriptsStatus}),[a,e,...va(this.ca)]);this.ra=J.map(k=>new k(this));this.mb();wa(this.ga);self.c3_callFunction=(k,l)=>{var m=this.ga;return m.s.Nb(m.aa,{name:k,params:l})};"preview"===this.l&&(self.goToLastErrorScript=()=>this.Ga("runtime","go-to-last-error-script"))}async Yb(b,a){this.u=document.createElement("canvas");this.u.style.display="none";document.body.appendChild(this.u);window.c3canvas=this.u;self.C3_InsertHTMLPlaceholders&&self.C3_InsertHTMLPlaceholders();
-this.ra=J.map(h=>new h(this));this.mb();var c=b.V.map(h=>"string"===typeof h?(new URL(h,this.B)).toString():h);if(Array.isArray(b.ya)){var e=[...b.ya].map(h=>h instanceof Blob?URL.createObjectURL(h):h);c.unshift(...e)}c=await Promise.all(c.map(h=>this.P(h)));await Promise.all(c.map(h=>D(h)));c=self.C3_ProjectScriptsStatus;e=b.$a;const f=b.xa;for(let [h,k]of f)if(k||(k=h),h===e)try{k=await this.P(k),await D(k),"preview"!==this.l||c[h]||this.qb(h,"main script did not run to completion")}catch(l){this.qb(h,
-l)}else if("scriptsInEvents.js"===h||h.endsWith("/scriptsInEvents.js"))k=await this.P(k),await D(k);"preview"===this.l&&"object"!==typeof self.$c.fd?(this.pa(),console.error("[C3 runtime] Failed to load JavaScript code used in events. Check all your JavaScript code has valid syntax."),alert("Failed to load JavaScript code used in events. Check all your JavaScript code has valid syntax.")):(b=Object.assign(this.nb(b),{isInWorker:!1,messagePort:a,canvas:this.u,runOnStartupFunctions:ra}),wa(this.ga),
-this.pb(),this.Va=self.C3_CreateRuntime(b),await self.C3_InitRuntime(this.Va,b))}qb(b,a){this.pa();console.error(`[Preview] Failed to load project main script (${b}): `,a);alert(`Failed to load project main script (${b}). Check all your JavaScript code has valid syntax. Press F12 and check the console for error details.`)}pb(){this.pa()}pa(){const b=window.sc;b&&(b.parentElement.removeChild(b),window.sc=null)}async ac(){const b=await xa(this.ca);return{outputPort:b,transferables:[b]}}Xb(){if(this.C)throw Error("not available in worker mode");
-return this.Va}Ga(b,a,c,e,f){this.ea.postMessage({type:"event",component:b,handler:a,dispatchOpts:e||null,data:c,responseId:null},f)}Nb(b,a){const c=qa++,e=new Promise((f,h)=>{M.set(c,{resolve:f,reject:h})});this.ea.postMessage({type:"event",component:b,handler:"js-invoke-function",dispatchOpts:null,data:a,responseId:c},void 0);return e}_OnMessageFromRuntime(b){const a=b.type;if("event"===a)return this.bc(b);if("result"===a)this.ec(b);else if("runtime-ready"===a)this.fc();else if("alert-error"===
-a)this.pa(),alert(b.message);else if("creating-runtime"===a)this.pb();else throw Error(`unknown message '${a}'`);}bc(b){const a=b.component,c=b.handler,e=b.data,f=b.responseId;if(b=L.get(a))if(b=b.get(c)){var h=null;try{h=b(e)}catch(k){console.error(`Exception in '${a}' handler '${c}':`,k);null!==f&&this.oa(f,!1,""+k);return}if(null===f)return h;h&&h.then?h.then(k=>this.oa(f,!0,k)).catch(k=>{console.error(`Rejection from '${a}' handler '${c}':`,k);this.oa(f,!1,""+k)}):this.oa(f,!0,h)}else console.warn(`[DOM] No handler '${c}' for component '${a}'`);
-else console.warn(`[DOM] No event handlers for component '${a}'`)}oa(b,a,c){let e;c&&c.transferables&&(e=c.transferables);this.ea.postMessage({type:"result",responseId:b,isOk:a,result:c},e)}ec(b){const a=b.responseId,c=b.isOk;b=b.result;const e=M.get(a);c?e.resolve(b):e.reject(b);M.delete(a)}j(b,a,c){let e=L.get(b);e||(e=new Map,L.set(b,e));if(e.has(a))throw Error(`[DOM] Component '${b}' already has handler '${a}'`);e.set(a,c)}static W(b){if(J.includes(b))throw Error("DOM handler already added");
-J.push(b)}mb(){for(const b of this.ra)if("runtime"===b.aa){this.ga=b;return}throw Error("cannot find runtime DOM handler");}cc(b){this.Ga("debugger","message",b)}fc(){for(const b of this.ra)b.gb()}static X(){return!!(document.fullscreenElement||document.webkitFullscreenElement||document.mozFullScreenElement||ta)}static rb(b){ta=!!b}Pb(b){this.Ya.push(b);this.Ma()}Ma(){-1===this.R&&this.Ya.length&&(this.R=requestAnimationFrame(this.oc))}Rb(){-1!==this.R&&(cancelAnimationFrame(this.R),this.R=-1)}dc(){this.R=
--1;for(const b of this.Ya)b();this.Ma()}La(){this.ga.La()}Ob(){this.xb=!0}Ib(b){return/^(?:[a-z\-]+:)?\/\//.test(b)||"data:"===b.substr(0,5)||"blob:"===b.substr(0,5)}Kb(b){return!this.Ib(b)}async P(b){return"cordova"===this.l&&(b.startsWith("file:")||this.Sa&&this.Kb(b))?(b.startsWith(this.B)&&(b=b.substr(this.B.length)),b=await this.za(b),URL.createObjectURL(new Blob([b],{type:"application/javascript"}))):b}async $b(b){const a=b.filename;switch(b.as){case "text":return await this.Hb(a);case "buffer":return await this.za(a);
-default:throw Error("unsupported type");}}hb(b){const a=window.cordova.file.applicationDirectory+"www/"+b;return new Promise((c,e)=>{window.resolveLocalFileSystemURL(a,f=>{f.file(c,e)},e)})}async Hb(b){b=await this.hb(b);return await oa(b)}Ia(){if(H.length&&!(8<=I)){I++;var b=H.shift();this.Ub(b.filename,b.Wc,b.Bc)}}za(b){return new Promise((a,c)=>{H.push({filename:b,Wc:e=>{I--;this.Ia();a(e)},Bc:e=>{I--;this.Ia();c(e)}});this.Ia()})}async Ub(b,a,c){try{const e=await this.hb(b),f=await pa(e);a(f)}catch(e){c(e)}}ic(){var b=
-{type:"ready"};if("windows-webview2"===this.l)window.chrome.webview.postMessage(JSON.stringify(b));else if("macos-wkwebview"===this.l)window.webkit.messageHandlers.C3Wrapper.postMessage(JSON.stringify(b));else throw Error("cannot send wrapper message");}async Tb(){const b=[];for(const [a,c]of Object.entries(this.J))b.push(this.Sb(a,c));await Promise.all(b)}async Sb(b,a){if("object"===typeof a)this.J[b]=new Blob([a.str],{type:a.type}),this.sa[b]=a.str;else{let c=await this.Wb(a);c||(c=this.Vb(a));
-this.J[b]=c}}async Wb(b){try{return await (await fetch(b)).blob()}catch(a){return console.warn("Failed to fetch a data: URI. Falling back to a slower workaround. This is probably because the Content Security Policy unnecessarily blocked it. Allow data: URIs in your CSP to avoid this.",a),null}}Vb(b){b=this.hc(b);return this.Qb(b.data,b.Jc)}hc(b){var a=b.indexOf(",");if(0>a)throw new URIError("expected comma in data: uri");var c=b.substring(a+1);a=b.substring(5,a).split(";");b=a[0]||"";const e=a[2];
-c="base64"===a[1]||"base64"===e?atob(c):decodeURIComponent(c);return{Jc:b,data:c}}Qb(b,a){var c=b.length;let e=c>>2,f=new Uint8Array(c),h=new Uint32Array(f.buffer,0,e),k,l;for(l=k=0;k<e;++k)h[k]=b.charCodeAt(l++)|b.charCodeAt(l++)<<8|b.charCodeAt(l++)<<16|b.charCodeAt(l++)<<24;for(c&=3;c--;)f[l]=b.charCodeAt(l),++l;return new Blob([f],{type:a})}};"use strict";const N=self.O;
-function ya(d){return d.sourceCapabilities&&d.sourceCapabilities.firesTouchEvents||d.originalEvent&&d.originalEvent.sourceCapabilities&&d.originalEvent.sourceCapabilities.firesTouchEvents}const za=new Map([["OSLeft","MetaLeft"],["OSRight","MetaRight"]]),P={dispatchRuntimeEvent:!0,dispatchUserScriptEvent:!0},Aa={dispatchUserScriptEvent:!0},R={dispatchRuntimeEvent:!0};
-function Ba(d){return new Promise((b,a)=>{const c=document.createElement("link");c.onload=()=>b(c);c.onerror=e=>a(e);c.rel="stylesheet";c.href=d;document.head.appendChild(c)})}function Ca(d){return new Promise((b,a)=>{const c=new Image;c.onload=()=>b(c);c.onerror=e=>a(e);c.src=d})}async function S(d){d=URL.createObjectURL(d);try{return await Ca(d)}finally{URL.revokeObjectURL(d)}}
-function Da(d){return new Promise((b,a)=>{let c=new FileReader;c.onload=e=>b(e.target.result);c.onerror=e=>a(e);c.readAsText(d)})}
-async function Fa(d,b,a){if(!/firefox/i.test(navigator.userAgent))return await S(d);var c=await Da(d);c=(new DOMParser).parseFromString(c,"image/svg+xml");const e=c.documentElement;if(e.hasAttribute("width")&&e.hasAttribute("height")){const f=e.getAttribute("width"),h=e.getAttribute("height");if(!f.includes("%")&&!h.includes("%"))return await S(d)}e.setAttribute("width",b+"px");e.setAttribute("height",a+"px");c=(new XMLSerializer).serializeToString(c);d=new Blob([c],{type:"image/svg+xml"});return await S(d)}
-function Ga(d){do{if(d.parentNode&&d.hasAttribute("contenteditable"))return!0;d=d.parentNode}while(d);return!1}const Ha=new Set(["input","textarea","datalist","select"]),Ia=new Set(["canvas","body","html"]);function T(d){d.target.tagName&&Ia.has(d.target.tagName.toLowerCase())&&d.preventDefault()}function Ja(d){(d.metaKey||d.ctrlKey)&&d.preventDefault()}
-self.C3_GetSvgImageSize=async function(d){d=await S(d);if(0<d.width&&0<d.height)return[d.width,d.height];d.style.position="absolute";d.style.left="0px";d.style.top="0px";d.style.visibility="hidden";document.body.appendChild(d);const b=d.getBoundingClientRect();document.body.removeChild(d);return[b.width,b.height]};self.C3_RasterSvgImageBlob=async function(d,b,a,c,e){d=await Fa(d,b,a);const f=document.createElement("canvas");f.width=c;f.height=e;f.getContext("2d").drawImage(d,0,0,b,a);return f};
-let Ka=!1;document.addEventListener("pause",()=>Ka=!0);document.addEventListener("resume",()=>Ka=!1);function wa(d){d.vb=!0;d.Ua=d.s.I();d.da=d.s.G()}async function La(d){await Promise.all(d.webfonts.map(async b=>{b=new FontFace(b.name,`url('${b.url}')`);document.fonts.add(b);await b.load()}))}
-async function Ma(d){var b=d.imageBitmapOpts;d=await self.C3_RasterSvgImageBlob(d.blob,d.imageWidth,d.imageHeight,d.surfaceWidth,d.surfaceHeight);b=b?await createImageBitmap(d,b):await createImageBitmap(d);return{imageBitmap:b,transferables:[b]}}async function Na(d){return await self.C3_GetSvgImageSize(d.blob)}function Oa(d){window.c3_postToMessagePort&&(d.from="runtime",window.c3_postToMessagePort(d))}
-function Pa(d){self.setTimeout(()=>{d.ub=!0},1E3);"cordova"===d.s.l?(document.addEventListener("pause",()=>Qa(d,!0)),document.addEventListener("resume",()=>Qa(d,!1))):document.addEventListener("visibilitychange",()=>Qa(d,document.hidden));return{isSuspended:!(!document.hidden&&!Ka)}}
-function Ra(d){d.tb||(d.tb=!0,window.addEventListener("deviceorientation",b=>{d.A||p(d,"deviceorientation",{absolute:!!b.absolute,alpha:b.alpha||0,beta:b.beta||0,gamma:b.gamma||0,timeStamp:b.timeStamp,webkitCompassHeading:b.webkitCompassHeading,webkitCompassAccuracy:b.webkitCompassAccuracy},P)}),window.addEventListener("deviceorientationabsolute",b=>{d.A||p(d,"deviceorientationabsolute",{absolute:!!b.absolute,alpha:b.alpha||0,beta:b.beta||0,gamma:b.gamma||0,timeStamp:b.timeStamp},P)}))}
-function Sa(d){d.sb||(d.sb=!0,window.addEventListener("devicemotion",b=>{if(!d.A){var a=null,c=b.acceleration;c&&(a={x:c.x||0,y:c.y||0,z:c.z||0});c=null;var e=b.accelerationIncludingGravity;e&&(c={x:e.x||0,y:e.y||0,z:e.z||0});e=null;var f=b.rotationRate;f&&(e={alpha:f.alpha||0,beta:f.beta||0,gamma:f.gamma||0});p(d,"devicemotion",{acceleration:a,accelerationIncludingGravity:c,rotationRate:e,interval:b.interval,timeStamp:b.timeStamp},P)}}))}async function Ta(d){await Ba(d.url)}
-function Ua(d,b){d.wb=b.message;-1===d.Pa&&(d.Pa=setTimeout(()=>{d.Pa=-1;const a=document.getElementById("exportToVideoMessage");a&&(a.textContent=d.wb)},250))}function U(d){if(!d.A){var b=N.X();b&&"any"!==d.Za&&Va(d);p(d,"fullscreenchange",{isFullscreen:b,innerWidth:d.I(),innerHeight:d.G()})}}function Wa(d,b){console.warn("[Construct] Fullscreen request failed: ",b);p(d,"fullscreenerror",{isFullscreen:N.X(),innerWidth:d.I(),innerHeight:d.G()})}
-function Qa(d,b){b?d.s.Rb():d.s.Ma();p(d,"visibilitychange",{hidden:b})}function Xa(d,b,a){"Backspace"===a.key&&T(a);if(!d.A){var c=za.get(a.code)||a.code;w(d,b,{code:c,key:a.key,which:a.which,repeat:a.repeat,altKey:a.altKey,ctrlKey:a.ctrlKey,metaKey:a.metaKey,shiftKey:a.shiftKey,timeStamp:a.timeStamp},P)}}
-function Ya(d,b,a,c){d.A||ya(a)||w(d,b,{button:a.button,buttons:a.buttons,clientX:a.clientX,clientY:a.clientY+d.D,pageX:a.pageX,pageY:a.pageY+d.D,movementX:a.movementX||0,movementY:a.movementY||0,timeStamp:a.timeStamp},c)}function Za(d){window!==window.top&&window.focus();$a(d.target)&&document.activeElement&&!$a(document.activeElement)&&document.activeElement.blur()}
-function V(d,b,a){if(!d.A){var c=0;"mouse"===a.pointerType&&(c=d.fa);w(d,b,{pointerId:a.pointerId,pointerType:a.pointerType,button:a.button,buttons:a.buttons,lastButtons:c,clientX:a.clientX,clientY:a.clientY+d.D,pageX:a.pageX,pageY:a.pageY+d.D,movementX:a.movementX||0,movementY:a.movementY||0,width:a.width||0,height:a.height||0,pressure:a.pressure||0,tangentialPressure:a.tangentialPressure||0,tiltX:a.tiltX||0,tiltY:a.tiltY||0,twist:a.twist||0,timeStamp:a.timeStamp},P);"mouse"===a.pointerType&&(c=
-"mousemove","pointerdown"===b?c="mousedown":"pointerup"===b&&(c="mouseup"),Ya(d,c,a,Aa),d.fa=a.buttons)}}
-function ab(d,b,a){if(!d.A&&!ya(a)){var c=d.fa;"pointerdown"===b&&0!==c?b="pointermove":"pointerup"===b&&0!==a.buttons&&(b="pointermove");w(d,b,{pointerId:1,pointerType:"mouse",button:a.button,buttons:a.buttons,lastButtons:c,clientX:a.clientX,clientY:a.clientY+d.D,pageX:a.pageX,pageY:a.pageY+d.D,movementX:a.movementX||0,movementY:a.movementY||0,width:0,height:0,pressure:0,tangentialPressure:0,tiltX:0,tiltY:0,twist:0,timeStamp:a.timeStamp},P);d.fa=a.buttons;Ya(d,a.type,a,Aa)}}
-function W(d,b,a){if(!d.A)for(let c=0,e=a.changedTouches.length;c<e;++c){const f=a.changedTouches[c];w(d,b,{pointerId:f.identifier,pointerType:"touch",button:0,buttons:0,lastButtons:0,clientX:f.clientX,clientY:f.clientY+d.D,pageX:f.pageX,pageY:f.pageY+d.D,movementX:a.movementX||0,movementY:a.movementY||0,width:2*(f.radiusX||f.webkitRadiusX||0),height:2*(f.radiusY||f.webkitRadiusY||0),pressure:f.force||f.webkitForce||0,tangentialPressure:0,tiltX:0,tiltY:0,twist:f.rotationAngle||0,timeStamp:a.timeStamp},
-P)}}function bb(d,b,a){document.body.style.transform="";d.D=0;if(0<a){var c=document.activeElement;c&&(c=c.getBoundingClientRect(),b=(c.top+c.bottom)/2-(b-a)/2,b>a&&(b=a),0>b&&(b=0),0<b&&(document.body.style.transform=`translateY(${-b}px)`,d.D=b))}}function cb(d,b,a,c){const e=d.I(),f=d.G();d.T=-1;e!=b||f!=a?p(d,"window-resize",{innerWidth:e,innerHeight:f,devicePixelRatio:window.devicePixelRatio,isFullscreen:N.X()}):10>c&&db(d,e,f,c+1)}
-function db(d,b,a,c){-1!==d.T&&clearTimeout(d.T);d.T=setTimeout(()=>cb(d,b,a,c),48)}
-function Va(d){d=d.Za;if(screen.orientation&&screen.orientation.lock)screen.orientation.lock(d).catch(b=>console.warn("[Construct] Failed to lock orientation: ",b));else try{let b=!1;screen.lockOrientation?b=screen.lockOrientation(d):screen.webkitLockOrientation?b=screen.webkitLockOrientation(d):screen.mozLockOrientation?b=screen.mozLockOrientation(d):screen.msLockOrientation&&(b=screen.msLockOrientation(d));b||console.warn("[Construct] Failed to lock orientation")}catch(b){console.warn("[Construct] Failed to lock orientation: ",b)}}
-function $a(d){return!d||d===document||d===window||d===document.body||"canvas"===d.tagName.toLowerCase()}
-N.W(class extends self.ma{constructor(d){super(d,"runtime");this.yb=!0;this.vb=!1;this.T=-1;this.Za="any";this.sb=this.tb=!1;this.ta=document.createElement("div");this.ta.className="c3-screen-reader-text";this.ta.setAttribute("aria-live","polite");document.body.appendChild(this.ta);this.N=null;this.A=!1;this.wb="";this.Pa=-1;this.ub=!1;this.Ua=d.I();this.da=d.G();this.D=this.ha=0;d.j("canvas","update-size",c=>{var e=this.s;e.xb||(e=e.u,e.style.width=c.styleWidth+"px",e.style.height=c.styleHeight+
-"px",e.style.marginLeft=c.marginLeft+"px",e.style.marginTop=c.marginTop+"px",document.documentElement.style.setProperty("--construct-scale",c.displayScale),this.yb&&(e.style.display="",this.yb=!1))});d.j("runtime","invoke-download",c=>{const e=c.url;c=c.filename;const f=document.createElement("a"),h=document.body;f.textContent=c;f.href=e;f.download=c;h.appendChild(f);f.click();h.removeChild(f)});d.j("runtime","load-webfonts",c=>La(c));d.j("runtime","raster-svg-image",c=>Ma(c));d.j("runtime","get-svg-image-size",
-c=>Na(c));d.j("runtime","set-target-orientation",c=>{this.Za=c.targetOrientation});d.j("runtime","register-sw",()=>{window.C3_RegisterSW&&window.C3_RegisterSW()});d.j("runtime","post-to-debugger",c=>Oa(c));d.j("runtime","go-to-script",c=>Oa(c));d.j("runtime","before-start-ticking",()=>Pa(this));d.j("runtime","debug-highlight",c=>{if(c.show){this.N||(this.N=document.createElement("div"),this.N.id="inspectOutline",document.body.appendChild(this.N));var e=this.N;e.style.display="";e.style.left=c.left-
-1+"px";e.style.top=c.top-1+"px";e.style.width=c.width+2+"px";e.style.height=c.height+2+"px";e.textContent=c.name}else this.N&&(this.N.style.display="none")});d.j("runtime","enable-device-orientation",()=>Ra(this));d.j("runtime","enable-device-motion",()=>Sa(this));d.j("runtime","add-stylesheet",c=>Ta(c));d.j("runtime","script-create-worker",c=>{const e=c.port2;(new Worker(c.url,c.opts)).postMessage({type:"construct-worker-init",port2:e},[e])});d.j("runtime","alert",c=>{alert(c.message)});d.j("runtime",
-"screen-reader-text",c=>{var e=c.type;"create"===e?(e=document.createElement("p"),e.id="c3-sr-"+c.id,e.textContent=c.text,this.ta.appendChild(e)):"update"===e?(e=document.getElementById("c3-sr-"+c.id))?e.textContent=c.text:console.warn(`[Construct] Missing screen reader text with id ${c.id}`):"release"===e?(e=document.getElementById("c3-sr-"+c.id))?e.remove():console.warn(`[Construct] Missing screen reader text with id ${c.id}`):console.warn(`[Construct] Unknown screen reader text update '${e}'`)});
-d.j("runtime","hide-cordova-splash",()=>{navigator.splashscreen&&navigator.splashscreen.hide&&navigator.splashscreen.hide()});d.j("runtime","set-exporting-to-video",c=>{this.A=!0;const e=document.createElement("h1");e.id="exportToVideoMessage";e.textContent=c.message;document.body.prepend(e);document.body.classList.add("exportingToVideo");this.s.u.style.display="";this.s.Ob()});d.j("runtime","export-to-video-progress",c=>Ua(this,c));d.j("runtime","exported-to-video",c=>{window.rc({type:"exported-video",
-arrayBuffer:c.arrayBuffer,contentType:c.contentType,time:c.time})});d.j("runtime","exported-to-image-sequence",c=>{window.rc({type:"exported-image-sequence",blobArr:c.blobArr,time:c.time,gif:c.gif})});const b=new Set(["input","textarea","datalist"]);window.addEventListener("contextmenu",c=>{const e=c.target;b.has(e.tagName.toLowerCase())||Ga(e)||c.preventDefault()});const a=d.u;window.addEventListener("selectstart",T);window.addEventListener("gesturehold",T);a.addEventListener("selectstart",T);a.addEventListener("gesturehold",
-T);window.addEventListener("touchstart",T,{passive:!1});"undefined"!==typeof PointerEvent?(window.addEventListener("pointerdown",T,{passive:!1}),a.addEventListener("pointerdown",T)):a.addEventListener("touchstart",T);this.fa=0;window.addEventListener("mousedown",c=>{1===c.button&&c.preventDefault()});window.addEventListener("mousewheel",Ja,{passive:!1});window.addEventListener("wheel",Ja,{passive:!1});window.addEventListener("resize",()=>{a:{if(!this.A&&this.vb){var c=this.I();var e=this.G();if(this.s.jb()){if(this.ub){if(this.Ua===
-c&&e<this.da){this.ha=this.da-e;bb(this,this.da,this.ha);c=void 0;break a}0<this.ha&&(this.ha=0,bb(this,e,this.ha))}this.Ua=c;this.da=e}p(this,"window-resize",{innerWidth:c,innerHeight:e,devicePixelRatio:window.devicePixelRatio,isFullscreen:N.X()});this.s.Fa()&&(-1!==this.T&&clearTimeout(this.T),cb(this,c,e,0))}c=void 0}return c});window.addEventListener("fullscreenchange",()=>U(this));window.addEventListener("webkitfullscreenchange",()=>U(this));window.addEventListener("mozfullscreenchange",()=>
-U(this));window.addEventListener("fullscreenerror",c=>Wa(this,c));window.addEventListener("webkitfullscreenerror",c=>Wa(this,c));window.addEventListener("mozfullscreenerror",c=>Wa(this,c));if(d.Fa())if(window.visualViewport){let c=Infinity;window.visualViewport.addEventListener("resize",()=>{const e=window.visualViewport.height;e>c&&(document.scrollingElement.scrollTop=0);c=e})}else window.addEventListener("focusout",()=>{{const f=document.activeElement;if(f){var c=f.tagName.toLowerCase();var e=new Set("email number password search tel text url".split(" "));
-c="textarea"===c?!0:"input"===c?e.has(f.type.toLowerCase()||"text"):Ga(f)}else c=!1}c||(document.scrollingElement.scrollTop=0)});self.C3WrapperOnMessage=c=>{"entered-fullscreen"===c?(N.rb(!0),U(this)):"exited-fullscreen"===c?(N.rb(!1),U(this)):console.warn("Unknown wrapper message: ",c)};this.Wa=new Set;this.nc=new WeakSet;this.lc=!1}gb(){window.addEventListener("focus",()=>{p(this,"window-focus",null,R)});window.addEventListener("blur",()=>{try{var b=window.parent&&window.parent.document.hasFocus()}catch(a){b=
-!1}p(this,"window-blur",{parentHasFocus:b},R);this.fa=0});window.addEventListener("focusin",b=>{b=b.target;(Ha.has(b.tagName.toLowerCase())||Ga(b))&&p(this,"keyboard-blur",null,R)});window.addEventListener("keydown",b=>Xa(this,"keydown",b));window.addEventListener("keyup",b=>Xa(this,"keyup",b));window.addEventListener("dblclick",b=>Ya(this,"dblclick",b,P));window.addEventListener("wheel",b=>{this.A||p(this,"wheel",{clientX:b.clientX,clientY:b.clientY+this.D,pageX:b.pageX,pageY:b.pageY+this.D,deltaX:b.deltaX,
-deltaY:b.deltaY,deltaZ:b.deltaZ,deltaMode:b.deltaMode,timeStamp:b.timeStamp},P)});"undefined"!==typeof PointerEvent?(window.addEventListener("pointerdown",b=>{Za(b);V(this,"pointerdown",b)}),this.s.C&&"undefined"!==typeof window.onpointerrawupdate&&self===self.top?window.addEventListener("pointerrawupdate",b=>{V(this,"pointermove",b)}):window.addEventListener("pointermove",b=>V(this,"pointermove",b)),window.addEventListener("pointerup",b=>V(this,"pointerup",b)),window.addEventListener("pointercancel",
-b=>V(this,"pointercancel",b))):(window.addEventListener("mousedown",b=>{Za(b);ab(this,"pointerdown",b)}),window.addEventListener("mousemove",b=>ab(this,"pointermove",b)),window.addEventListener("mouseup",b=>ab(this,"pointerup",b)),window.addEventListener("touchstart",b=>{Za(b);W(this,"pointerdown",b)}),window.addEventListener("touchmove",b=>W(this,"pointermove",b)),window.addEventListener("touchend",b=>W(this,"pointerup",b)),window.addEventListener("touchcancel",b=>W(this,"pointercancel",b)));const d=
-()=>this.La();window.addEventListener("pointerup",d,!0);window.addEventListener("touchend",d,!0);window.addEventListener("click",d,!0);window.addEventListener("keydown",d,!0);window.addEventListener("gamepadconnected",d,!0);this.s.Jb()&&!this.s.jb()&&navigator.virtualKeyboard&&(navigator.virtualKeyboard.overlaysContent=!0,navigator.virtualKeyboard.addEventListener("geometrychange",()=>{bb(this,this.G(),navigator.virtualKeyboard.boundingRect.height)}))}I(){return this.s.I()}G(){return this.s.G()}La(){var d=
-[...this.Wa];this.Wa.clear();if(!this.lc)for(const b of d)(d=b.play())&&d.catch(()=>{this.nc.has(b)||this.Wa.add(b)})}});"use strict";async function ua(d){if(d.jc)throw Error("already initialised");d.jc=!0;var b=d.M.Ka(("playable-ad"===d.M.l?d.M.S:"")+"dispatchworker.js");d.Na=await d.M.Ba(b,d.$,{name:"DispatchWorker"});b=new MessageChannel;d.Ra=b.port1;d.Na.postMessage({type:"_init","in-port":b.port2},[b.port2]);d.Xa=await xa(d)}function va(d){return[d.Ra,d.Xa]}
-async function xa(d){const b=d.zb.length;var a=d.M.Ka(("playable-ad"===d.M.l?d.M.S:"")+"jobworker.js");a=await d.M.Ba(a,d.$,{name:"JobWorker"+b});const c=new MessageChannel,e=new MessageChannel;d.Na.postMessage({type:"_addJobWorker",port:c.port1},[c.port1]);a.postMessage({type:"init",number:b,"dispatch-port":c.port2,"output-port":e.port2},[c.port2,e.port2]);d.zb.push(a);return e.port1}
-self.Mb=class{constructor(d){this.M=d;this.$=d.B;this.$="preview"===d.l?this.$+"workers/":this.$+d.S;this.mc=Math.min(navigator.hardwareConcurrency||2,16);this.Na=null;this.zb=[];this.Xa=this.Ra=null}};"use strict";window.C3_IsSupported&&(window.c3_runtimeInterface=new self.O({Xc:!0,Yc:"workermain.js",V:["scripts/c3runtime.js"],xa:[],$a:"",Sc:"scripts/",ya:[],Db:"html5"}));"use strict";function X(d){d.stopPropagation()}function eb(d){13!==d.which&&27!==d.which&&d.stopPropagation()}
-self.O.W(class extends self.ib{constructor(d){super(d,"text-input");da(this,"scroll-to-bottom",b=>{b.scrollTop=b.scrollHeight})}Aa(d,b){let a;const c=b.type;"textarea"===c?(a=document.createElement("textarea"),a.style.resize="none"):(a=document.createElement("input"),a.type=c);a.style.position="absolute";a.autocomplete="off";a.addEventListener("pointerdown",X);a.addEventListener("pointermove",X);a.addEventListener("pointerrawupdate",X);a.addEventListener("pointerup",X);a.addEventListener("mousedown",
-X);a.addEventListener("mouseup",X);a.addEventListener("keydown",eb);a.addEventListener("keyup",eb);a.addEventListener("click",e=>{e.stopPropagation();B(this,"click",d)});a.addEventListener("dblclick",e=>{e.stopPropagation();B(this,"dblclick",d)});a.addEventListener("input",()=>y(this,"change",d,{text:a.value}));b.id&&(a.id=b.id);b.className&&(a.className=b.className);this.Y(a,b);return a}Y(d,b){d.value=b.text;d.placeholder=b.placeholder;d.title=b.title;d.disabled=!b.isEnabled;d.readOnly=b.isReadOnly;
-d.spellcheck=b.spellCheck;b=b.maxLength;0>b?d.removeAttribute("maxlength"):d.setAttribute("maxlength",b)}});"use strict";function Z(d){d.stopPropagation()}
-self.O.W(class extends self.ib{constructor(d){super(d,"button")}Aa(d,b){const a=document.createElement("input");var c=a;b.isCheckbox?(a.type="checkbox",c=document.createElement("label"),c.appendChild(a),c.appendChild(document.createTextNode("")),c.style.fontFamily="sans-serif",c.style.userSelect="none",c.style.webkitUserSelect="none",c.style.display="inline-block",c.style.color="black"):a.type="button";c.style.position="absolute";c.addEventListener("pointerdown",Z);c.addEventListener("pointermove",
-Z);c.addEventListener("pointerrawupdate",Z);c.addEventListener("pointerup",Z);c.addEventListener("mousedown",Z);c.addEventListener("mouseup",Z);c.addEventListener("keydown",Z);c.addEventListener("keyup",Z);a.addEventListener("click",()=>B(this,"click",d,{isChecked:a.checked}));b.id&&(a.id=b.id);b.className&&(a.className=b.className);this.Y(c,b);return c}Ja(d){return"input"===d.tagName.toLowerCase()?d:d.firstChild}Y(d,b){const a="input"===d.tagName.toLowerCase()?d:d.firstChild;a.checked=b.isChecked;
-a.disabled=!b.isEnabled;d.title=b.title;d===a?a.value=b.text:d.lastChild.textContent=b.text}});"use strict";
-self.O.W(class extends self.ma{constructor(d){super(d,"sparsha_firebase_sdk");var b=this;x(this,"domSync_sparsha_fSDK",function(a){function c(){p(b,"run_sparsha_fSDK"+a.wa,e)}var e={action:a.action,status:"none",ka:{},la:{}},f=globalThis.Gb;if("init"===a.action||"reconnect"===a.action){function fb(){var q={},r={},Q=f.bb[a.g];1===f.Ab[a.g]&&"reconnect"!==a.action||f.h.Ld(Q,u=>{var G=f.na(u,a.g);q=G.ua;r=G.va;u?a.debug&&console.log("LOGGED IN\nsdkObject: "+a.g+"\nuserID: "+q.myUID+"\nprovider: "+q.providerID+
-"\nemail: "+q.myEmail+"\nisEmailVerified: "+q.isEmailVerified+"\nusername: "+q.username+"\nphone: "+q.phoneNo+"\nphotoURL: "+q.photoURL+"\n "):a.debug&&console.log("LOGGED OUT\nsdkObject: "+a.g+"\n ");e.status="success";e.ka=q;e.la=r;c();r.gd=0;f.Ab[a.g]=1})}function ja(q){f.L[a.g]=a.g===f.ab?f.Bb.Gc(q):f.Bb.Gc(q,a.g);"undefined"===typeof f.K[a.g]&&(f.K[a.g]={});a.wc&&(f.Gd[a.g]=f.tc.wd(f.L[a.g]),f.kd&&f.tc.sd(!0));a.xc&&(f.Hd[a.g]=f.td.xd(f.L[a.g]));a.Ac&&(f.Jd[a.g]=f.storage.Ad(f.L[a.g]));a.Cb&&
-(f.Fd[a.g]=f.ld.ud(f.L[a.g]));a.zc&&(f.Kc[a.g]=f.Sd.zd(f.L[a.g]),q=f.Kc[a.g],q.ae.Ed=1E3*a.Rd,q.pd=a.Qd);a.yc&&(f.Id[a.g]=f.performance.yd(f.L[a.g]));a.uc&&f.qc.Cd(f.L[a.g],{Od:new f.qc.dd(a.Pd),Dd:!0});a.vc?(f.bb[a.g]=f.h.vd(f.L[a.g]),fb()):(f.Ab[a.g]=1,e.status="success",c())}if("init"===a.action)if("undefined"===typeof f.ab&&(f.ab=a.g),a.g===f.ab){var h=["initializeAppCheck","ReCaptchaV3Provider"],k="createUserWithEmailAndPassword deleteUser getAdditionalUserInfo getAuth linkWithCredential linkWithPhoneNumber linkWithPopup linkWithRedirect onAuthStateChanged sendEmailVerification sendPasswordResetEmail setPersistence signInAnonymously signInWithCredential signInWithEmailAndPassword signInWithPhoneNumber signInWithPopup signInWithRedirect signInWithCustomToken signOut unlink updateEmail updatePassword updatePhoneNumber updateProfile useDeviceLanguage AuthCredential EmailAuthCredential EmailAuthProvider FacebookAuthProvider GithubAuthProvider GoogleAuthProvider OAuthProvider OAuthCredential PhoneAuthCredential PhoneAuthProvider RecaptchaVerifier TwitterAuthProvider".split(" "),
-l="enableLogging endAt endBefore equalTo get getDatabase goOffline goOnline increment limitToFirst limitToLast off onChildAdded onChildChanged onChildMoved onChildRemoved onDisconnect onValue orderByChild orderByKey orderByValue push query ref set remove runTransaction serverTimestamp startAfter startAt update".split(" "),m="addDoc arrayRemove arrayUnion clearIndexedDbPersistence collection collectionGroup deleteDoc deleteField disableNetwork doc documentId enableIndexedDbPersistence enableMultiTabIndexedDbPersistence enableNetwork endAt endBefore getDoc getDocFromCache getDocFromServer getDocs getFirestore increment initializeFirestore limit limitToLast loadBundle namedQuery onSnapshot onSnapshotsInSync orderBy query refEqual runTransaction serverTimestamp setDoc setLogLevel snapshotEqual startAfter startAt terminate updateDoc waitForPendingWrites where writeBatch".split(" "),
-g="deleteObject getDownloadURL getMetadata getStorage list listAll ref updateMetadata uploadBytes uploadBytesResumable uploadString".split(" "),t="getAnalytics initializeAnalytics logEvent setAnalyticsCollectionEnabled setUserId setUserProperties".split(" "),E=["fetchAndActivate","getAll","getRemoteConfig"],Y=["getPerformance","trace"];a.Qc="";a.Oc="";a.Pc="";const q="https://www.gstatic.com/firebasejs/"+a.version+"/firebase-";var v="",K="";function r(u,G,z){v+="import {";K+="globalThis.sparshaFirebase."+
-z+"={";G=JSON.parse('["'+G.replaceAll("\n",'","')+'"]');G.forEach(function(n){n=u.indexOf(n);-1<n&&u.splice(n,1)});u.forEach(function(n){if("database"!==z||"ref"!==n&&"endAt"!==n&&"endBefore"!==n&&"increment"!==n&&"limitToLast"!==n&&"query"!==n&&"runTransaction"!==n&&"serverTimestamp"!==n&&"startAfter"!==n&&"startAt"!==n)v+=n+", ",K+=n+":"+n+",";else{var Ea=n+z;v+=n+" as "+Ea+", ";K+=n+":"+Ea+","}});"appcheck"===z&&(z="app-check");"remoteconfig"===z&&(z="remote-config");v+='  } from "'+q+z+'.js";';
-K+="};"}"undefined"!==typeof window.cordova&&(a.Cb=!1);r(["deleteApp","getApp","initializeApp"],a.Td,"app");a.uc&&r(h,"","appcheck");a.vc&&r(k,a.Ud,"auth");a.wc&&r(l,a.Vd,"database");a.xc&&r(m,a.Wd,"firestore");a.Ac&&r(g,a.Xd,"storage");a.Cb&&r(t,a.Oc,"analytics");a.zc&&r(E,a.Qc,"remoteconfig");a.yc&&r(Y,a.Pc,"performance");f.jd=function(){ja(a.Eb)};f.kc=0;function Q(){var u=document.createElement("script");u.type="module";u.innerHTML=v+K+"globalThis.sparshaFirebase._isLoaded=1;globalThis.sparshaFirebase._callInitApp();";
-document.getElementsByTagName("head")[0].appendChild(u)}Q();var gb=setTimeout(function(){0===f.kc?(a.debug&&console.error("TIMEOUT\nsdkObject: "+a.g),a.md&&Q(),e.status="timeout",c()):clearTimeout(gb)},1E3*a.de)}else ja(a.Eb);else ja(a.Eb)}else"disconnect"===a.action&&f.Bb.qd(f.L[a.g])})}});"use strict";
-self.O.W(class extends self.ma{constructor(d){super(d,"sparsha_firebase_auth");var b=this;x(this,"domSync_sparsha_fAuth",function(a){if("RemoveRecaptcha"===a.action){var c=document.createElement("style");c.innerHTML=".grecaptcha-badge{visibility: hidden;}";document.head.appendChild(c)}else if("PopupOauthSafe"===a.action){a.i=0;var e=globalThis.Gb,f=e.bb[a.g];window.document.getElementById(a.nd).onclick=function(){h()};function h(){if(0===a.o){var k=new e.h.Ea;a.Ec&&k.setCustomParameters({prompt:"select_account"})}else 1===
-a.o?k=new e.h.Ca:2===a.o?k=new e.h.H("apple.com"):3===a.o?k=new e.h.Ha:4===a.o?k=new e.h.Da:5===a.o?k=new e.h.H("microsoft.com"):6===a.o&&(k=new e.h.H("yahoo.com"));var l;e.h.Tc(f,k).then(m=>{a.ja=e.h.Fb(m).ja;l=m;var g=e.na(m.v,a.g);a.ka=g.ua;a.la=g.va;a.i=1;if(0===a.o)a.m=e.h.Ea.F(m);else if(1===a.o){a.m=e.h.Ca.F(l);var t=l.v.cb.split("?")[0]+"?access_token="+a.m.pc;a.m=JSON.stringify(a.m);e.h.fb(e.K[a.g].v,{cb:t}).then(()=>{a.eb=1;a.Mc=t;p(b,"run_sparsha_fAuthBasic"+a.wa,a)}).catch(E=>{a.eb=0;
-a.errorCode=E.code;a.errorMessage=E.message;p(b,"run_sparsha_fAuthBasic"+a.wa,a)})}else 2===a.o?a.m=e.h.H.F(m):3===a.o?a.m=e.h.Ha.F(m):4===a.o?a.m=e.h.Da.F(m):5<=a.o&&(a.m=e.h.H.F(m));a.m=JSON.stringify(a.m);p(b,"run_sparsha_fAuthBasic"+a.wa,a)}).catch(m=>{a.i=0;a.errorCode=m.code;a.errorMessage=m.message;p(b,"run_sparsha_fAuthBasic"+a.wa,a)})}}});x(this,"domAsync_sparsha_fAuth",async function(a){var c={i:0},e=globalThis.Gb,f=e.bb[a.g];if("Signupemail"===a.action||"Signinemail"===a.action||"Signupname"===
-a.action||"Signinname"===a.action){var h="",k="";h="Signupemail"===a.action||"Signupname"===a.action?"createUserWithEmailAndPassword":"signInWithEmailAndPassword";k="Signupname"===a.action||"Signinname"===a.action?a.username.replace(/ /g,"")+"@"+a.domain:a.email;e.Z[a.g]=1;await e.h[h](f,k,a.password).then(g=>{var t=new e.h.ad(k,a.password,"password");g=e.na(g.v,a.g);c.ka=g.ua;c.la=g.va;c.m=JSON.stringify(t);c.i=1}).catch(g=>{e.Z[a.g]=0;c.i=0;c.errorCode=g.code;c.errorMessage=g.message});"Signupname"===
-a.action&&c.i&&await e.h.fb(e.K[a.g].v,{displayName:a.username}).then(()=>{c.Lc=1}).catch(g=>{c.Lc=0;c.errorCode=g.code;c.errorMessage=g.message})}else if("VerifyEmail"===a.action)await e.h.Zd(e.K[a.g].v).then(()=>{c.i=1}).catch(g=>{c.i=0;c.errorCode=g.code;c.errorMessage=g.message});else if("UpdateEmail"===a.action)await e.h.ee(e.K[a.g].v,a.Kd).then(()=>{c.i=1}).catch(g=>{c.i=0;c.errorCode=g.code;c.errorMessage=g.message});else if("ResetPassword"===a.action)await e.h.$d(f,a.email).then(()=>{c.i=
-1}).catch(g=>{c.i=0;c.errorCode=g.code;c.errorMessage=g.message});else if("UpdatePassword"===a.action)await e.h.fe(e.K[a.g].v,a.password).then(()=>{c.i=1}).catch(g=>{c.i=0;c.errorCode=g.code;c.errorMessage=g.message});else if("RenderRecaptcha"===a.action)h=document.getElementById("SparshaFirebaseCaptcha"),null===h&&(h=document.createElement("BUTTON"),h.display="none",h.id="SparshaFirebaseCaptcha",document.body.appendChild(h)),e.kb=new e.h.ed("SparshaFirebaseCaptcha",{size:"invisible",theme:a.ce},
-f),await e.kb.Yd().then(g=>{e.hd=g;c.i=1}).catch(g=>{c.i=0;c.errorCode=g.code;c.errorMessage=g.message});else if("SendPhoneNumber"===a.action)await e.h.be(f,a.Md,e.kb).then(g=>{e.lb=g;c.i=1}).catch(g=>{c.i=0;c.errorCode=g.code;c.errorMessage=g.message});else if("SubmitOtp"===a.action)e.Z[a.g]=1,await e.lb.confirm(a.Nc).then(g=>{c.ja=e.h.Fb(g).ja;c.m=e.h.bd.credential(e.lb.he,a.Nc);g=e.na(g.v,a.g);c.ka=g.ua;c.la=g.va;c.m=JSON.stringify(c.m);c.i=1}).catch(g=>{e.Z[a.g]=0;c.i=0;c.errorCode=g.code;c.errorMessage=
-g.message});else if("SignOut"===a.action)await e.h.Uc(f).then(()=>{c.i=1}).catch(g=>{c.i=0;c.errorCode=g.code;c.errorMessage=g.message}),"undefined"!==typeof window.cordova&&"undefined"!==typeof window.cordova.plugins&&"undefined"!==typeof window.cordova.plugins.Dc&&await window.cordova.plugins.Dc.h.Uc(),"undefined"!==typeof window.plugins&&"undefined"!==typeof window.plugins.Fc&&await window.plugins.Fc.logout(),"undefined"!==typeof window.Cc&&await window.Cc.logout();else if("UpdateUsername"===a.action)await e.h.fb(e.K[a.g].v,
-a.ge).then(()=>{c.i=1}).catch(g=>{c.i=0;c.errorCode=g.code;c.errorMessage=g.message});else if("DeleteUser"===a.action)await e.h.rd(e.K[a.g].v).then(()=>{c.i=1}).catch(g=>{c.i=0;c.errorCode=g.code;c.errorMessage=g.message});else if("PopupOauth"===a.action){e.Z[a.g]=1;0===a.o?(h=new e.h.Ea,a.Ec&&h.setCustomParameters({prompt:"select_account"})):1===a.o?h=new e.h.Ca:2===a.o?h=new e.h.H("apple.com"):3===a.o?h=new e.h.Ha:4===a.o?h=new e.h.Da:5===a.o?h=new e.h.H("microsoft.com"):6===a.o&&(h=new e.h.H("yahoo.com"));
-var l;await e.h.Tc(f,h).then(g=>{c.ja=e.h.Fb(g).ja;l=g;var t=e.na(g.v,a.g);c.ka=t.ua;c.la=t.va;0===a.o?c.m=e.h.Ea.F(g):2===a.o?c.m=e.h.H.F(g):3===a.o?c.m=e.h.Ha.F(g):4===a.o?c.m=e.h.Da.F(g):5<=a.o&&(c.m=e.h.H.F(g));c.m=JSON.stringify(c.m);c.i=1}).catch(g=>{e.Z[a.g]=0;c.i=0;c.errorCode=g.code;c.errorMessage=g.message});if(1===a.o&&1===c.i){c.m=e.h.Ca.F(l);var m=l.v.cb.split("?")[0]+"?access_token="+c.m.pc;c.m=JSON.stringify(c.m);await e.h.fb(e.K[a.g].v,{cb:m}).then(()=>{c.eb=1;c.Mc=m}).catch(g=>{c.eb=
-0;c.errorCode=g.code;c.errorMessage=g.message})}}return c})}});
+'use strict';{window.DOMHandler=class DOMHandler{constructor(iRuntime,componentId){this._iRuntime=iRuntime;this._componentId=componentId;this._hasTickCallback=false;this._tickCallback=()=>this.Tick()}Attach(){}PostToRuntime(handler,data,dispatchOpts,transferables){this._iRuntime.PostToRuntimeComponent(this._componentId,handler,data,dispatchOpts,transferables)}PostToRuntimeAsync(handler,data,dispatchOpts,transferables){return this._iRuntime.PostToRuntimeComponentAsync(this._componentId,handler,data,
+dispatchOpts,transferables)}_PostToRuntimeMaybeSync(name,data,dispatchOpts){if(this._iRuntime.UsesWorker())this.PostToRuntime(name,data,dispatchOpts);else this._iRuntime._GetLocalRuntime()["_OnMessageFromDOM"]({"type":"event","component":this._componentId,"handler":name,"dispatchOpts":dispatchOpts||null,"data":data,"responseId":null})}AddRuntimeMessageHandler(handler,func){this._iRuntime.AddRuntimeComponentMessageHandler(this._componentId,handler,func)}AddRuntimeMessageHandlers(list){for(const [handler,
+func]of list)this.AddRuntimeMessageHandler(handler,func)}GetRuntimeInterface(){return this._iRuntime}GetComponentID(){return this._componentId}_StartTicking(){if(this._hasTickCallback)return;this._iRuntime._AddRAFCallback(this._tickCallback);this._hasTickCallback=true}_StopTicking(){if(!this._hasTickCallback)return;this._iRuntime._RemoveRAFCallback(this._tickCallback);this._hasTickCallback=false}Tick(){}};window.RateLimiter=class RateLimiter{constructor(callback,interval){this._callback=callback;
+this._interval=interval;this._timerId=-1;this._lastCallTime=-Infinity;this._timerCallFunc=()=>this._OnTimer();this._ignoreReset=false;this._canRunImmediate=false}SetCanRunImmediate(c){this._canRunImmediate=!!c}Call(){if(this._timerId!==-1)return;const nowTime=Date.now();const timeSinceLastCall=nowTime-this._lastCallTime;const interval=this._interval;if(timeSinceLastCall>=interval&&this._canRunImmediate){this._lastCallTime=nowTime;this._RunCallback()}else this._timerId=self.setTimeout(this._timerCallFunc,
+Math.max(interval-timeSinceLastCall,4))}_RunCallback(){this._ignoreReset=true;this._callback();this._ignoreReset=false}Reset(){if(this._ignoreReset)return;this._CancelTimer();this._lastCallTime=Date.now()}_OnTimer(){this._timerId=-1;this._lastCallTime=Date.now();this._RunCallback()}_CancelTimer(){if(this._timerId!==-1){self.clearTimeout(this._timerId);this._timerId=-1}}Release(){this._CancelTimer();this._callback=null;this._timerCallFunc=null}}};
+
+
+'use strict';{class ElementState{constructor(elem){this._elem=elem;this._hadFirstUpdate=false;this._isVisibleFlag=true}SetVisibleFlag(f){this._isVisibleFlag=!!f}GetVisibleFlag(){return this._isVisibleFlag}HadFirstUpdate(){return this._hadFirstUpdate}SetHadFirstUpdate(){this._hadFirstUpdate=true}GetElement(){return this._elem}}window.DOMElementHandler=class DOMElementHandler extends self.DOMHandler{constructor(iRuntime,componentId){super(iRuntime,componentId);this._elementMap=new Map;this._autoAttach=
+true;this.AddRuntimeMessageHandlers([["create",e=>this._OnCreate(e)],["destroy",e=>this._OnDestroy(e)],["set-visible",e=>this._OnSetVisible(e)],["update-position",e=>this._OnUpdatePosition(e)],["update-state",e=>this._OnUpdateState(e)],["focus",e=>this._OnSetFocus(e)],["set-css-style",e=>this._OnSetCssStyle(e)],["set-attribute",e=>this._OnSetAttribute(e)],["remove-attribute",e=>this._OnRemoveAttribute(e)]]);this.AddDOMElementMessageHandler("get-element",elem=>elem)}SetAutoAttach(e){this._autoAttach=
+!!e}AddDOMElementMessageHandler(handler,func){this.AddRuntimeMessageHandler(handler,e=>{const elementId=e["elementId"];const elem=this.GetElementById(elementId);return func(elem,e)})}_OnCreate(e){const elementId=e["elementId"];const elem=this.CreateElement(elementId,e);const elementState=new ElementState(elem);this._elementMap.set(elementId,elementState);elem.style.boxSizing="border-box";elem.style.display="none";elementState.SetVisibleFlag(e["isVisible"]);const focusElem=this._GetFocusElement(elem);
+focusElem.addEventListener("focus",e=>this._OnFocus(elementId));focusElem.addEventListener("blur",e=>this._OnBlur(elementId));if(this._autoAttach)document.body.appendChild(elem)}CreateElement(elementId,e){throw new Error("required override");}DestroyElement(elem){}_OnDestroy(e){const elementId=e["elementId"];const elem=this.GetElementById(elementId);this.DestroyElement(elem);if(this._autoAttach)elem.parentElement.removeChild(elem);this._elementMap.delete(elementId)}PostToRuntimeElement(handler,elementId,
+data){if(!data)data={};data["elementId"]=elementId;this.PostToRuntime(handler,data)}_PostToRuntimeElementMaybeSync(handler,elementId,data){if(!data)data={};data["elementId"]=elementId;this._PostToRuntimeMaybeSync(handler,data)}_OnSetVisible(e){if(!this._autoAttach)return;const elemState=this._elementMap.get(e["elementId"]);const elem=elemState.GetElement();if(elemState.HadFirstUpdate())elem.style.display=e["isVisible"]?"":"none";else elemState.SetVisibleFlag(e["isVisible"])}_OnUpdatePosition(e){if(!this._autoAttach)return;
+const elemState=this._elementMap.get(e["elementId"]);const elem=elemState.GetElement();elem.style.left=e["left"]+"px";elem.style.top=e["top"]+"px";elem.style.width=e["width"]+"px";elem.style.height=e["height"]+"px";const fontSize=e["fontSize"];if(fontSize!==null)elem.style.fontSize=fontSize+"em";if(!elemState.HadFirstUpdate()){elemState.SetHadFirstUpdate();if(elemState.GetVisibleFlag())elem.style.display=""}}_OnUpdateState(e){const elem=this.GetElementById(e["elementId"]);this.UpdateState(elem,e)}UpdateState(elem,
+e){throw new Error("required override");}_GetFocusElement(elem){return elem}_OnFocus(elementId){this.PostToRuntimeElement("elem-focused",elementId)}_OnBlur(elementId){this.PostToRuntimeElement("elem-blurred",elementId)}_OnSetFocus(e){const elem=this._GetFocusElement(this.GetElementById(e["elementId"]));if(e["focus"])elem.focus();else elem.blur()}_OnSetCssStyle(e){const elem=this.GetElementById(e["elementId"]);const prop=e["prop"];const val=e["val"];if(prop.startsWith("--"))elem.style.setProperty(prop,
+val);else elem.style[prop]=val}_OnSetAttribute(e){const elem=this.GetElementById(e["elementId"]);elem.setAttribute(e["name"],e["val"])}_OnRemoveAttribute(e){const elem=this.GetElementById(e["elementId"]);elem.removeAttribute(e["name"])}GetElementById(elementId){const elementState=this._elementMap.get(elementId);if(!elementState)throw new Error(`no element with id ${elementId}`);return elementState.GetElement()}}};
+
+
+'use strict';{const isiOSLike=/(iphone|ipod|ipad|macos|macintosh|mac os x)/i.test(navigator.userAgent);const isAndroid=/android/i.test(navigator.userAgent);const isSafari=/safari/i.test(navigator.userAgent)&&!/(chrome|chromium|edg\/|OPR\/|nwjs)/i.test(navigator.userAgent);let resolveCounter=0;function AddScript(url){const elem=document.createElement("script");elem.async=false;elem.type="module";if(url.isStringSrc)return new Promise(resolve=>{const resolveName="c3_resolve_"+resolveCounter;++resolveCounter;
+self[resolveName]=resolve;elem.textContent=url.str+`\n\nself["${resolveName}"]();`;document.head.appendChild(elem)});else return new Promise((resolve,reject)=>{elem.onload=resolve;elem.onerror=reject;elem.src=url;document.head.appendChild(elem)})}let didCheckWorkerModuleSupport=false;let isWorkerModuleSupported=false;function SupportsWorkerTypeModule(){if(!didCheckWorkerModuleSupport){try{new Worker("blob://",{get type(){isWorkerModuleSupported=true}})}catch(e){}didCheckWorkerModuleSupport=true}return isWorkerModuleSupported}
+let tmpAudio=new Audio;const supportedAudioFormats={"audio/webm; codecs=opus":!!tmpAudio.canPlayType("audio/webm; codecs=opus"),"audio/ogg; codecs=opus":!!tmpAudio.canPlayType("audio/ogg; codecs=opus"),"audio/webm; codecs=vorbis":!!tmpAudio.canPlayType("audio/webm; codecs=vorbis"),"audio/ogg; codecs=vorbis":!!tmpAudio.canPlayType("audio/ogg; codecs=vorbis"),"audio/mp4":!!tmpAudio.canPlayType("audio/mp4"),"audio/mpeg":!!tmpAudio.canPlayType("audio/mpeg")};tmpAudio=null;async function BlobToString(blob){const arrayBuffer=
+await BlobToArrayBuffer(blob);const textDecoder=new TextDecoder("utf-8");return textDecoder.decode(arrayBuffer)}function BlobToArrayBuffer(blob){return new Promise((resolve,reject)=>{const fileReader=new FileReader;fileReader.onload=e=>resolve(e.target.result);fileReader.onerror=err=>reject(err);fileReader.readAsArrayBuffer(blob)})}const queuedArrayBufferReads=[];let activeArrayBufferReads=0;const MAX_ARRAYBUFFER_READS=8;window["RealFile"]=window["File"];const domHandlerClasses=[];const runtimeEventHandlers=
+new Map;const pendingResponsePromises=new Map;let nextResponseId=0;const runOnStartupFunctions=[];self.runOnStartup=function runOnStartup(f){if(typeof f!=="function")throw new Error("runOnStartup called without a function");runOnStartupFunctions.push(f)};const WEBVIEW_EXPORT_TYPES=new Set(["cordova","playable-ad","instant-games"]);function IsWebViewExportType(exportType){return WEBVIEW_EXPORT_TYPES.has(exportType)}let isWrapperFullscreen=false;window.RuntimeInterface=class RuntimeInterface{constructor(opts){this._useWorker=
+opts.useWorker;this._messageChannelPort=null;this._runtimeBaseUrl="";this._scriptFolder=opts.scriptFolder;this._workerScriptURLs={};this._worker=null;this._localRuntime=null;this._domHandlers=[];this._runtimeDomHandler=null;this._canvas=null;this._isExportingToVideo=false;this._exportToVideoDuration=0;this._jobScheduler=null;this._rafId=-1;this._rafFunc=()=>this._OnRAFCallback();this._rafCallbacks=[];this._exportType=opts.exportType;this._isFileProtocol=location.protocol.substr(0,4)==="file";if(this._useWorker&&
+(typeof OffscreenCanvas==="undefined"||!navigator["userActivation"]||!SupportsWorkerTypeModule()))this._useWorker=false;if(this._useWorker&&isSafari)this._useWorker=false;if(this._exportType==="playable-ad"||this._exportType==="instant-games")this._useWorker=false;if(this._exportType==="cordova"&&this._useWorker)if(isAndroid){const chromeVer=/Chrome\/(\d+)/i.exec(navigator.userAgent);if(!chromeVer||!(parseInt(chromeVer[1],10)>=90))this._useWorker=false}else this._useWorker=false;this._localFileBlobs=
+null;this._localFileStrings=null;if(this._exportType==="html5"&&!window.isSecureContext)console.warn("[Construct] Warning: the browser indicates this is not a secure context. Some features may be unavailable. Use secure (HTTPS) hosting to ensure all features are available.");this.AddRuntimeComponentMessageHandler("runtime","cordova-fetch-local-file",e=>this._OnCordovaFetchLocalFile(e));this.AddRuntimeComponentMessageHandler("runtime","create-job-worker",e=>this._OnCreateJobWorker(e));if(this._exportType===
+"cordova")document.addEventListener("deviceready",()=>this._Init(opts));else this._Init(opts)}Release(){this._CancelAnimationFrame();if(this._messageChannelPort){this._messageChannelPort.onmessage=null;this._messageChannelPort=null}if(this._worker){this._worker.terminate();this._worker=null}if(this._localRuntime){this._localRuntime.Release();this._localRuntime=null}if(this._canvas){this._canvas.parentElement.removeChild(this._canvas);this._canvas=null}}GetCanvas(){return this._canvas}GetRuntimeBaseURL(){return this._runtimeBaseUrl}UsesWorker(){return this._useWorker}GetExportType(){return this._exportType}IsFileProtocol(){return this._isFileProtocol}GetScriptFolder(){return this._scriptFolder}IsiOSCordova(){return isiOSLike&&
+this._exportType==="cordova"}IsiOSWebView(){const ua=navigator.userAgent;return isiOSLike&&IsWebViewExportType(this._exportType)||navigator["standalone"]||/crios\/|fxios\/|edgios\//i.test(ua)}IsAndroid(){return isAndroid}IsAndroidWebView(){return isAndroid&&IsWebViewExportType(this._exportType)}async _Init(opts){if(this._exportType==="macos-wkwebview")this._SendWrapperMessage({"type":"ready"});if(this._exportType==="playable-ad"){this._localFileBlobs=self["c3_base64files"];this._localFileStrings=
+{};await this._ConvertDataUrisToBlobs();for(let i=0,len=opts.engineScripts.length;i<len;++i){const src=opts.engineScripts[i];if(this._localFileStrings.hasOwnProperty(src))opts.engineScripts[i]={isStringSrc:true,str:this._localFileStrings[src]};else if(this._localFileBlobs.hasOwnProperty(src))opts.engineScripts[i]=URL.createObjectURL(this._localFileBlobs[src])}opts.workerDependencyScripts=[]}if(this._exportType==="nwjs"&&self["nw"]&&self["nw"]["App"]["manifest"]["c3-steam-mode"]){let frameNum=0;this._AddRAFCallback(()=>
+{frameNum++;document.body.style.opacity=frameNum%2===0?"1":"0.999"})}if(opts.runtimeBaseUrl)this._runtimeBaseUrl=opts.runtimeBaseUrl;else{const origin=location.origin;this._runtimeBaseUrl=(origin==="null"?"file:///":origin)+location.pathname;const i=this._runtimeBaseUrl.lastIndexOf("/");if(i!==-1)this._runtimeBaseUrl=this._runtimeBaseUrl.substr(0,i+1)}if(opts.workerScripts)this._workerScriptURLs=opts.workerScripts;const messageChannel=new MessageChannel;this._messageChannelPort=messageChannel.port1;
+this._messageChannelPort.onmessage=e=>this["_OnMessageFromRuntime"](e.data);if(window["c3_addPortMessageHandler"])window["c3_addPortMessageHandler"](e=>this._OnMessageFromDebugger(e));this._jobScheduler=new self.JobSchedulerDOM(this);await this._jobScheduler.Init();if(typeof window["StatusBar"]==="object")window["StatusBar"]["hide"]();if(typeof window["AndroidFullScreen"]==="object")try{await new Promise((resolve,reject)=>{window["AndroidFullScreen"]["immersiveMode"](resolve,reject)})}catch(err){console.error("Failed to enter Android immersive mode: ",
+err)}if(this._useWorker)await this._InitWorker(opts,messageChannel.port2);else await this._InitDOM(opts,messageChannel.port2)}_GetWorkerURL(url){let ret;if(this._workerScriptURLs.hasOwnProperty(url))ret=this._workerScriptURLs[url];else if(url.endsWith("/workermain.js")&&this._workerScriptURLs.hasOwnProperty("workermain.js"))ret=this._workerScriptURLs["workermain.js"];else if(this._exportType==="playable-ad"&&this._localFileBlobs.hasOwnProperty(url))ret=this._localFileBlobs[url];else ret=url;if(ret instanceof
+Blob)ret=URL.createObjectURL(ret);return ret}async CreateWorker(url,baseUrl,workerOpts){if(url.startsWith("blob:"))return new Worker(url,workerOpts);if(this._exportType==="cordova"&&this._isFileProtocol){let filePath="";if(workerOpts.isC3MainWorker)filePath=url;else filePath=this._scriptFolder+url;const arrayBuffer=await this.CordovaFetchLocalFileAsArrayBuffer(filePath);const blob=new Blob([arrayBuffer],{type:"application/javascript"});return new Worker(URL.createObjectURL(blob),workerOpts)}const absUrl=
+new URL(url,baseUrl);const isCrossOrigin=location.origin!==absUrl.origin;if(isCrossOrigin){const response=await fetch(absUrl);if(!response.ok)throw new Error("failed to fetch worker script");const blob=await response.blob();return new Worker(URL.createObjectURL(blob),workerOpts)}else return new Worker(absUrl,workerOpts)}_GetWindowInnerWidth(){return Math.max(window.innerWidth,1)}_GetWindowInnerHeight(){return Math.max(window.innerHeight,1)}_GetCommonRuntimeOptions(opts){return{"runtimeBaseUrl":this._runtimeBaseUrl,
+"previewUrl":location.href,"windowInnerWidth":this._GetWindowInnerWidth(),"windowInnerHeight":this._GetWindowInnerHeight(),"devicePixelRatio":window.devicePixelRatio,"isFullscreen":RuntimeInterface.IsDocumentFullscreen(),"projectData":opts.projectData,"previewImageBlobs":window["cr_previewImageBlobs"]||this._localFileBlobs,"previewProjectFileBlobs":window["cr_previewProjectFileBlobs"],"previewProjectFileSWUrls":window["cr_previewProjectFiles"],"swClientId":window.cr_swClientId||"","exportType":opts.exportType,
+"isDebug":(new URLSearchParams(self.location.search)).has("debug"),"ife":!!self.ife,"jobScheduler":this._jobScheduler.GetPortData(),"supportedAudioFormats":supportedAudioFormats,"opusWasmScriptUrl":window["cr_opusWasmScriptUrl"]||this._scriptFolder+"opus.wasm.js","opusWasmBinaryUrl":window["cr_opusWasmBinaryUrl"]||this._scriptFolder+"opus.wasm.wasm","isFileProtocol":this._isFileProtocol,"isiOSCordova":this.IsiOSCordova(),"isiOSWebView":this.IsiOSWebView(),"isFBInstantAvailable":typeof self["FBInstant"]!==
+"undefined"}}async _InitWorker(opts,port2){const workerMainUrl=this._GetWorkerURL(opts.workerMainUrl);if(this._exportType==="preview"){this._worker=new Worker("previewworker.js",{type:"module",name:"Runtime"});await new Promise((resolve,reject)=>{const messageHandler=e=>{this._worker.removeEventListener("message",messageHandler);if(e.data&&e.data["type"]==="ok")resolve();else reject()};this._worker.addEventListener("message",messageHandler);this._worker.postMessage({"type":"construct-worker-init",
+"import":(new URL(workerMainUrl,this._runtimeBaseUrl)).toString()})})}else this._worker=await this.CreateWorker(workerMainUrl,this._runtimeBaseUrl,{type:"module",name:"Runtime",isC3MainWorker:true});this._canvas=document.createElement("canvas");this._canvas.style.display="none";const offscreenCanvas=this._canvas["transferControlToOffscreen"]();document.body.appendChild(this._canvas);window["c3canvas"]=this._canvas;if(self["C3_InsertHTMLPlaceholders"])self["C3_InsertHTMLPlaceholders"]();let workerDependencyScripts=
+opts.workerDependencyScripts||[];let engineScripts=opts.engineScripts;workerDependencyScripts=await Promise.all(workerDependencyScripts.map(url=>this._MaybeGetCordovaScriptURL(url)));engineScripts=await Promise.all(engineScripts.map(url=>this._MaybeGetCordovaScriptURL(url)));if(this._exportType==="cordova")for(let i=0,len=opts.projectScripts.length;i<len;++i){const info=opts.projectScripts[i];const originalUrl=info[0];if(originalUrl===opts.mainProjectScript||(originalUrl==="scriptsInEvents.js"||originalUrl.endsWith("/scriptsInEvents.js")))info[1]=
+await this._MaybeGetCordovaScriptURL(originalUrl)}this._worker.postMessage(Object.assign(this._GetCommonRuntimeOptions(opts),{"type":"init-runtime","isInWorker":true,"messagePort":port2,"canvas":offscreenCanvas,"workerDependencyScripts":workerDependencyScripts,"engineScripts":engineScripts,"projectScripts":opts.projectScripts,"mainProjectScript":opts.mainProjectScript,"projectScriptsStatus":self["C3_ProjectScriptsStatus"]}),[port2,offscreenCanvas,...this._jobScheduler.GetPortTransferables()]);this._domHandlers=
+domHandlerClasses.map(C=>new C(this));this._FindRuntimeDOMHandler();this._runtimeDomHandler._EnableWindowResizeEvent();self["c3_callFunction"]=(name,params)=>this._runtimeDomHandler._InvokeFunctionFromJS(name,params);if(this._exportType==="preview")self["goToLastErrorScript"]=()=>this.PostToRuntimeComponent("runtime","go-to-last-error-script")}async _InitDOM(opts,port2){this._canvas=document.createElement("canvas");this._canvas.style.display="none";document.body.appendChild(this._canvas);window["c3canvas"]=
+this._canvas;if(self["C3_InsertHTMLPlaceholders"])self["C3_InsertHTMLPlaceholders"]();this._domHandlers=domHandlerClasses.map(C=>new C(this));this._FindRuntimeDOMHandler();let engineScripts=opts.engineScripts.map(url=>typeof url==="string"?(new URL(url,this._runtimeBaseUrl)).toString():url);if(Array.isArray(opts.workerDependencyScripts)){const workerDependencyScripts=[...opts.workerDependencyScripts].map(s=>s instanceof Blob?URL.createObjectURL(s):s);engineScripts.unshift(...workerDependencyScripts)}engineScripts=
+await Promise.all(engineScripts.map(url=>this._MaybeGetCordovaScriptURL(url)));await Promise.all(engineScripts.map(url=>AddScript(url)));const scriptsStatus=self["C3_ProjectScriptsStatus"];const mainProjectScript=opts.mainProjectScript;const allProjectScripts=opts.projectScripts;for(let [originalUrl,loadUrl]of allProjectScripts){if(!loadUrl)loadUrl=originalUrl;if(originalUrl===mainProjectScript)try{loadUrl=await this._MaybeGetCordovaScriptURL(loadUrl);await AddScript(loadUrl);if(this._exportType===
+"preview"&&!scriptsStatus[originalUrl])this._ReportProjectMainScriptError(originalUrl,"main script did not run to completion")}catch(err){this._ReportProjectMainScriptError(originalUrl,err)}else if(originalUrl==="scriptsInEvents.js"||originalUrl.endsWith("/scriptsInEvents.js")){loadUrl=await this._MaybeGetCordovaScriptURL(loadUrl);await AddScript(loadUrl)}}if(this._exportType==="preview"&&typeof self.C3.ScriptsInEvents!=="object"){this._RemoveLoadingMessage();const msg="Failed to load JavaScript code used in events. Check all your JavaScript code has valid syntax.";
+console.error("[C3 runtime] "+msg);alert(msg);return}const runtimeOpts=Object.assign(this._GetCommonRuntimeOptions(opts),{"isInWorker":false,"messagePort":port2,"canvas":this._canvas,"runOnStartupFunctions":runOnStartupFunctions});this._runtimeDomHandler._EnableWindowResizeEvent();this._OnBeforeCreateRuntime();this._localRuntime=self["C3_CreateRuntime"](runtimeOpts);await self["C3_InitRuntime"](this._localRuntime,runtimeOpts)}_ReportProjectMainScriptError(url,err){this._RemoveLoadingMessage();console.error(`[Preview] Failed to load project main script (${url}): `,
+err);alert(`Failed to load project main script (${url}). Check all your JavaScript code has valid syntax. Press F12 and check the console for error details.`)}_OnBeforeCreateRuntime(){this._RemoveLoadingMessage()}_RemoveLoadingMessage(){const loadingElem=window.cr_previewLoadingElem;if(loadingElem){loadingElem.parentElement.removeChild(loadingElem);window.cr_previewLoadingElem=null}}async _OnCreateJobWorker(e){const outputPort=await this._jobScheduler._CreateJobWorker();return{"outputPort":outputPort,
+"transferables":[outputPort]}}_GetLocalRuntime(){if(this._useWorker)throw new Error("not available in worker mode");return this._localRuntime}PostToRuntimeComponent(component,handler,data,dispatchOpts,transferables){this._messageChannelPort.postMessage({"type":"event","component":component,"handler":handler,"dispatchOpts":dispatchOpts||null,"data":data,"responseId":null},transferables)}PostToRuntimeComponentAsync(component,handler,data,dispatchOpts,transferables){const responseId=nextResponseId++;
+const ret=new Promise((resolve,reject)=>{pendingResponsePromises.set(responseId,{resolve,reject})});this._messageChannelPort.postMessage({"type":"event","component":component,"handler":handler,"dispatchOpts":dispatchOpts||null,"data":data,"responseId":responseId},transferables);return ret}["_OnMessageFromRuntime"](data){const type=data["type"];if(type==="event")return this._OnEventFromRuntime(data);else if(type==="result")this._OnResultFromRuntime(data);else if(type==="runtime-ready")this._OnRuntimeReady();
+else if(type==="alert-error"){this._RemoveLoadingMessage();alert(data["message"])}else if(type==="creating-runtime")this._OnBeforeCreateRuntime();else throw new Error(`unknown message '${type}'`);}_OnEventFromRuntime(e){const component=e["component"];const handler=e["handler"];const data=e["data"];const responseId=e["responseId"];const handlerMap=runtimeEventHandlers.get(component);if(!handlerMap){console.warn(`[DOM] No event handlers for component '${component}'`);return}const func=handlerMap.get(handler);
+if(!func){console.warn(`[DOM] No handler '${handler}' for component '${component}'`);return}let ret=null;try{ret=func(data)}catch(err){console.error(`Exception in '${component}' handler '${handler}':`,err);if(responseId!==null)this._PostResultToRuntime(responseId,false,""+err);return}if(responseId===null)return ret;else if(ret&&ret.then)ret.then(result=>this._PostResultToRuntime(responseId,true,result)).catch(err=>{console.error(`Rejection from '${component}' handler '${handler}':`,err);this._PostResultToRuntime(responseId,
+false,""+err)});else this._PostResultToRuntime(responseId,true,ret)}_PostResultToRuntime(responseId,isOk,result){let transferables;if(result&&result["transferables"])transferables=result["transferables"];this._messageChannelPort.postMessage({"type":"result","responseId":responseId,"isOk":isOk,"result":result},transferables)}_OnResultFromRuntime(data){const responseId=data["responseId"];const isOk=data["isOk"];const result=data["result"];const pendingPromise=pendingResponsePromises.get(responseId);
+if(isOk)pendingPromise.resolve(result);else pendingPromise.reject(result);pendingResponsePromises.delete(responseId)}AddRuntimeComponentMessageHandler(component,handler,func){let handlerMap=runtimeEventHandlers.get(component);if(!handlerMap){handlerMap=new Map;runtimeEventHandlers.set(component,handlerMap)}if(handlerMap.has(handler))throw new Error(`[DOM] Component '${component}' already has handler '${handler}'`);handlerMap.set(handler,func)}static AddDOMHandlerClass(Class){if(domHandlerClasses.includes(Class))throw new Error("DOM handler already added");
+domHandlerClasses.push(Class)}_FindRuntimeDOMHandler(){for(const dh of this._domHandlers)if(dh.GetComponentID()==="runtime"){this._runtimeDomHandler=dh;return}throw new Error("cannot find runtime DOM handler");}_OnMessageFromDebugger(e){this.PostToRuntimeComponent("debugger","message",e)}_OnRuntimeReady(){for(const h of this._domHandlers)h.Attach()}static IsDocumentFullscreen(){return!!(document["fullscreenElement"]||document["webkitFullscreenElement"]||document["mozFullScreenElement"]||isWrapperFullscreen)}static _SetWrapperIsFullscreenFlag(f){isWrapperFullscreen=
+!!f}async GetRemotePreviewStatusInfo(){return await this.PostToRuntimeComponentAsync("runtime","get-remote-preview-status-info")}_AddRAFCallback(f){this._rafCallbacks.push(f);this._RequestAnimationFrame()}_RemoveRAFCallback(f){const i=this._rafCallbacks.indexOf(f);if(i===-1)throw new Error("invalid callback");this._rafCallbacks.splice(i,1);if(!this._rafCallbacks.length)this._CancelAnimationFrame()}_RequestAnimationFrame(){if(this._rafId===-1&&this._rafCallbacks.length)this._rafId=requestAnimationFrame(this._rafFunc)}_CancelAnimationFrame(){if(this._rafId!==
+-1){cancelAnimationFrame(this._rafId);this._rafId=-1}}_OnRAFCallback(){this._rafId=-1;for(const f of this._rafCallbacks)f();this._RequestAnimationFrame()}TryPlayMedia(mediaElem){this._runtimeDomHandler.TryPlayMedia(mediaElem)}RemovePendingPlay(mediaElem){this._runtimeDomHandler.RemovePendingPlay(mediaElem)}_PlayPendingMedia(){this._runtimeDomHandler._PlayPendingMedia()}SetSilent(s){this._runtimeDomHandler.SetSilent(s)}IsAudioFormatSupported(typeStr){return!!supportedAudioFormats[typeStr]}async _WasmDecodeWebMOpus(arrayBuffer){const result=
+await this.PostToRuntimeComponentAsync("runtime","opus-decode",{"arrayBuffer":arrayBuffer},null,[arrayBuffer]);return new Float32Array(result)}SetIsExportingToVideo(duration){this._isExportingToVideo=true;this._exportToVideoDuration=duration}IsExportingToVideo(){return this._isExportingToVideo}GetExportToVideoDuration(){return this._exportToVideoDuration}IsAbsoluteURL(url){return/^(?:[a-z\-]+:)?\/\//.test(url)||url.substr(0,5)==="data:"||url.substr(0,5)==="blob:"}IsRelativeURL(url){return!this.IsAbsoluteURL(url)}async _MaybeGetCordovaScriptURL(url){if(this._exportType===
+"cordova"&&(url.startsWith("file:")||this._isFileProtocol&&this.IsRelativeURL(url))){let filename=url;if(filename.startsWith(this._runtimeBaseUrl))filename=filename.substr(this._runtimeBaseUrl.length);const arrayBuffer=await this.CordovaFetchLocalFileAsArrayBuffer(filename);const blob=new Blob([arrayBuffer],{type:"application/javascript"});return URL.createObjectURL(blob)}else return url}async _OnCordovaFetchLocalFile(e){const filename=e["filename"];switch(e["as"]){case "text":return await this.CordovaFetchLocalFileAsText(filename);
+case "buffer":return await this.CordovaFetchLocalFileAsArrayBuffer(filename);default:throw new Error("unsupported type");}}_GetPermissionAPI(){const api=window["cordova"]&&window["cordova"]["plugins"]&&window["cordova"]["plugins"]["permissions"];if(typeof api!=="object")throw new Error("Permission API is not loaded");return api}_MapPermissionID(api,permission){const permissionID=api[permission];if(typeof permissionID!=="string")throw new Error("Invalid permission name");return permissionID}_HasPermission(id){const api=
+this._GetPermissionAPI();return new Promise((resolve,reject)=>api["checkPermission"](this._MapPermissionID(api,id),status=>resolve(!!status["hasPermission"]),reject))}_RequestPermission(id){const api=this._GetPermissionAPI();return new Promise((resolve,reject)=>api["requestPermission"](this._MapPermissionID(api,id),status=>resolve(!!status["hasPermission"]),reject))}async RequestPermissions(permissions){if(this.GetExportType()!=="cordova")return true;if(this.IsiOSCordova())return true;for(const id of permissions){const alreadyGranted=
+await this._HasPermission(id);if(alreadyGranted)continue;const granted=await this._RequestPermission(id);if(granted===false)return false}return true}async RequirePermissions(...permissions){if(await this.RequestPermissions(permissions)===false)throw new Error("Permission not granted");}CordovaFetchLocalFile(filename){const path=window["cordova"]["file"]["applicationDirectory"]+"www/"+filename;return new Promise((resolve,reject)=>{window["resolveLocalFileSystemURL"](path,entry=>{entry["file"](resolve,
+reject)},reject)})}async CordovaFetchLocalFileAsText(filename){const file=await this.CordovaFetchLocalFile(filename);return await BlobToString(file)}_CordovaMaybeStartNextArrayBufferRead(){if(!queuedArrayBufferReads.length)return;if(activeArrayBufferReads>=MAX_ARRAYBUFFER_READS)return;activeArrayBufferReads++;const job=queuedArrayBufferReads.shift();this._CordovaDoFetchLocalFileAsAsArrayBuffer(job.filename,job.successCallback,job.errorCallback)}CordovaFetchLocalFileAsArrayBuffer(filename){return new Promise((resolve,
+reject)=>{queuedArrayBufferReads.push({filename:filename,successCallback:result=>{activeArrayBufferReads--;this._CordovaMaybeStartNextArrayBufferRead();resolve(result)},errorCallback:err=>{activeArrayBufferReads--;this._CordovaMaybeStartNextArrayBufferRead();reject(err)}});this._CordovaMaybeStartNextArrayBufferRead()})}async _CordovaDoFetchLocalFileAsAsArrayBuffer(filename,successCallback,errorCallback){try{const file=await this.CordovaFetchLocalFile(filename);const arrayBuffer=await BlobToArrayBuffer(file);
+successCallback(arrayBuffer)}catch(err){errorCallback(err)}}_SendWrapperMessage(o){if(this._exportType==="windows-webview2")window["chrome"]["webview"]["postMessage"](JSON.stringify(o));else if(this._exportType==="macos-wkwebview")window["webkit"]["messageHandlers"]["C3Wrapper"]["postMessage"](JSON.stringify(o));else throw new Error("cannot send wrapper message");}async _ConvertDataUrisToBlobs(){const promises=[];for(const [filename,data]of Object.entries(this._localFileBlobs))promises.push(this._ConvertDataUriToBlobs(filename,
+data));await Promise.all(promises)}async _ConvertDataUriToBlobs(filename,data){if(typeof data==="object"){this._localFileBlobs[filename]=new Blob([data["str"]],{"type":data["type"]});this._localFileStrings[filename]=data["str"]}else{let blob=await this._FetchDataUri(data);if(!blob)blob=this._DataURIToBinaryBlobSync(data);this._localFileBlobs[filename]=blob}}async _FetchDataUri(dataUri){try{const response=await fetch(dataUri);return await response.blob()}catch(err){console.warn("Failed to fetch a data: URI. Falling back to a slower workaround. This is probably because the Content Security Policy unnecessarily blocked it. Allow data: URIs in your CSP to avoid this.",
+err);return null}}_DataURIToBinaryBlobSync(datauri){const o=this._ParseDataURI(datauri);return this._BinaryStringToBlob(o.data,o.mime_type)}_ParseDataURI(datauri){const comma=datauri.indexOf(",");if(comma<0)throw new URIError("expected comma in data: uri");const typepart=datauri.substring(5,comma);const datapart=datauri.substring(comma+1);const typearr=typepart.split(";");const mimetype=typearr[0]||"";const encoding1=typearr[1];const encoding2=typearr[2];let decodeddata;if(encoding1==="base64"||encoding2===
+"base64")decodeddata=atob(datapart);else decodeddata=decodeURIComponent(datapart);return{mime_type:mimetype,data:decodeddata}}_BinaryStringToBlob(binstr,mime_type){let len=binstr.length;let len32=len>>2;let a8=new Uint8Array(len);let a32=new Uint32Array(a8.buffer,0,len32);let i,j;for(i=0,j=0;i<len32;++i)a32[i]=binstr.charCodeAt(j++)|binstr.charCodeAt(j++)<<8|binstr.charCodeAt(j++)<<16|binstr.charCodeAt(j++)<<24;let tailLength=len&3;while(tailLength--){a8[j]=binstr.charCodeAt(j);++j}return new Blob([a8],
+{"type":mime_type})}}};
+
+
+'use strict';{const RuntimeInterface=self.RuntimeInterface;function IsCompatibilityMouseEvent(e){return e["sourceCapabilities"]&&e["sourceCapabilities"]["firesTouchEvents"]||e["originalEvent"]&&e["originalEvent"]["sourceCapabilities"]&&e["originalEvent"]["sourceCapabilities"]["firesTouchEvents"]}const KEY_CODE_ALIASES=new Map([["OSLeft","MetaLeft"],["OSRight","MetaRight"]]);const DISPATCH_RUNTIME_AND_SCRIPT={"dispatchRuntimeEvent":true,"dispatchUserScriptEvent":true};const DISPATCH_SCRIPT_ONLY={"dispatchUserScriptEvent":true};
+const DISPATCH_RUNTIME_ONLY={"dispatchRuntimeEvent":true};function AddStyleSheet(cssUrl){return new Promise((resolve,reject)=>{const styleLink=document.createElement("link");styleLink.onload=()=>resolve(styleLink);styleLink.onerror=err=>reject(err);styleLink.rel="stylesheet";styleLink.href=cssUrl;document.head.appendChild(styleLink)})}function FetchImage(url){return new Promise((resolve,reject)=>{const img=new Image;img.onload=()=>resolve(img);img.onerror=err=>reject(err);img.src=url})}async function BlobToImage(blob){const blobUrl=
+URL.createObjectURL(blob);try{return await FetchImage(blobUrl)}finally{URL.revokeObjectURL(blobUrl)}}function BlobToString(blob){return new Promise((resolve,reject)=>{let fileReader=new FileReader;fileReader.onload=e=>resolve(e.target.result);fileReader.onerror=err=>reject(err);fileReader.readAsText(blob)})}async function BlobToSvgImage(blob,width,height){if(!/firefox/i.test(navigator.userAgent))return await BlobToImage(blob);let str=await BlobToString(blob);const parser=new DOMParser;const doc=parser.parseFromString(str,
+"image/svg+xml");const rootElem=doc.documentElement;if(rootElem.hasAttribute("width")&&rootElem.hasAttribute("height")){const widthStr=rootElem.getAttribute("width");const heightStr=rootElem.getAttribute("height");if(!widthStr.includes("%")&&!heightStr.includes("%"))return await BlobToImage(blob)}rootElem.setAttribute("width",width+"px");rootElem.setAttribute("height",height+"px");const serializer=new XMLSerializer;str=serializer.serializeToString(doc);blob=new Blob([str],{type:"image/svg+xml"});
+return await BlobToImage(blob)}function IsInContentEditable(el){do{if(el.parentNode&&el.hasAttribute("contenteditable"))return true;el=el.parentNode}while(el);return false}const keyboardInputElementTagNames=new Set(["input","textarea","datalist","select"]);function IsKeyboardInputElement(elem){return keyboardInputElementTagNames.has(elem.tagName.toLowerCase())||IsInContentEditable(elem)}const canvasOrDocTags=new Set(["canvas","body","html"]);function PreventDefaultOnCanvasOrDoc(e){if(!e.target.tagName)return;
+const tagName=e.target.tagName.toLowerCase();if(canvasOrDocTags.has(tagName))e.preventDefault()}function BlockWheelZoom(e){if(e.metaKey||e.ctrlKey)e.preventDefault()}self["C3_GetSvgImageSize"]=async function(blob){const img=await BlobToImage(blob);if(img.width>0&&img.height>0)return[img.width,img.height];else{img.style.position="absolute";img.style.left="0px";img.style.top="0px";img.style.visibility="hidden";document.body.appendChild(img);const rc=img.getBoundingClientRect();document.body.removeChild(img);
+return[rc.width,rc.height]}};self["C3_RasterSvgImageBlob"]=async function(blob,imageWidth,imageHeight,surfaceWidth,surfaceHeight){const img=await BlobToSvgImage(blob,imageWidth,imageHeight);const canvas=document.createElement("canvas");canvas.width=surfaceWidth;canvas.height=surfaceHeight;const ctx=canvas.getContext("2d");ctx.drawImage(img,0,0,imageWidth,imageHeight);return canvas};let isCordovaPaused=false;document.addEventListener("pause",()=>isCordovaPaused=true);document.addEventListener("resume",
+()=>isCordovaPaused=false);function ParentHasFocus(){try{return window.parent&&window.parent.document.hasFocus()}catch(err){return false}}function KeyboardIsVisible(){const elem=document.activeElement;if(!elem)return false;const tagName=elem.tagName.toLowerCase();const inputTypes=new Set(["email","number","password","search","tel","text","url"]);if(tagName==="textarea")return true;if(tagName==="input")return inputTypes.has(elem.type.toLowerCase()||"text");return IsInContentEditable(elem)}const DOM_COMPONENT_ID=
+"runtime";const HANDLER_CLASS=class RuntimeDOMHandler extends self.DOMHandler{constructor(iRuntime){super(iRuntime,DOM_COMPONENT_ID);this._isFirstSizeUpdate=true;this._enableWindowResizeEvent=false;this._simulatedResizeTimerId=-1;this._targetOrientation="any";this._attachedDeviceOrientationEvent=false;this._attachedDeviceMotionEvent=false;this._screenReaderTextWrap=document.createElement("div");this._screenReaderTextWrap.className="c3-screen-reader-text";this._screenReaderTextWrap.setAttribute("aria-live",
+"polite");document.body.appendChild(this._screenReaderTextWrap);this._debugHighlightElem=null;this._isExportToVideo=false;this._exportVideoProgressMessage="";this._exportVideoUpdateTimerId=-1;this._enableAndroidVKDetection=false;this._lastWindowWidth=iRuntime._GetWindowInnerWidth();this._lastWindowHeight=iRuntime._GetWindowInnerHeight();this._virtualKeyboardHeight=0;this._vkTranslateYOffset=0;iRuntime.AddRuntimeComponentMessageHandler("canvas","update-size",e=>this._OnUpdateCanvasSize(e));iRuntime.AddRuntimeComponentMessageHandler("runtime",
+"invoke-download",e=>this._OnInvokeDownload(e));iRuntime.AddRuntimeComponentMessageHandler("runtime","load-webfonts",e=>this._OnLoadWebFonts(e));iRuntime.AddRuntimeComponentMessageHandler("runtime","raster-svg-image",e=>this._OnRasterSvgImage(e));iRuntime.AddRuntimeComponentMessageHandler("runtime","get-svg-image-size",e=>this._OnGetSvgImageSize(e));iRuntime.AddRuntimeComponentMessageHandler("runtime","set-target-orientation",e=>this._OnSetTargetOrientation(e));iRuntime.AddRuntimeComponentMessageHandler("runtime",
+"register-sw",()=>this._OnRegisterSW());iRuntime.AddRuntimeComponentMessageHandler("runtime","post-to-debugger",e=>this._OnPostToDebugger(e));iRuntime.AddRuntimeComponentMessageHandler("runtime","go-to-script",e=>this._OnPostToDebugger(e));iRuntime.AddRuntimeComponentMessageHandler("runtime","before-start-ticking",()=>this._OnBeforeStartTicking());iRuntime.AddRuntimeComponentMessageHandler("runtime","debug-highlight",e=>this._OnDebugHighlight(e));iRuntime.AddRuntimeComponentMessageHandler("runtime",
+"enable-device-orientation",()=>this._AttachDeviceOrientationEvent());iRuntime.AddRuntimeComponentMessageHandler("runtime","enable-device-motion",()=>this._AttachDeviceMotionEvent());iRuntime.AddRuntimeComponentMessageHandler("runtime","add-stylesheet",e=>this._OnAddStylesheet(e));iRuntime.AddRuntimeComponentMessageHandler("runtime","script-create-worker",e=>this._OnScriptCreateWorker(e));iRuntime.AddRuntimeComponentMessageHandler("runtime","alert",e=>this._OnAlert(e));iRuntime.AddRuntimeComponentMessageHandler("runtime",
+"screen-reader-text",e=>this._OnScreenReaderTextEvent(e));iRuntime.AddRuntimeComponentMessageHandler("runtime","hide-cordova-splash",()=>this._OnHideCordovaSplash());iRuntime.AddRuntimeComponentMessageHandler("runtime","set-exporting-to-video",e=>this._SetExportingToVideo(e));iRuntime.AddRuntimeComponentMessageHandler("runtime","export-to-video-progress",e=>this._OnExportVideoProgress(e));iRuntime.AddRuntimeComponentMessageHandler("runtime","exported-to-video",e=>this._OnExportedToVideo(e));iRuntime.AddRuntimeComponentMessageHandler("runtime",
+"exported-to-image-sequence",e=>this._OnExportedToImageSequence(e));const allowDefaultContextMenuTagNames=new Set(["input","textarea","datalist"]);window.addEventListener("contextmenu",e=>{const t=e.target;const name=t.tagName.toLowerCase();if(!allowDefaultContextMenuTagNames.has(name)&&!IsInContentEditable(t))e.preventDefault()});const canvas=iRuntime.GetCanvas();window.addEventListener("selectstart",PreventDefaultOnCanvasOrDoc);window.addEventListener("gesturehold",PreventDefaultOnCanvasOrDoc);
+canvas.addEventListener("selectstart",PreventDefaultOnCanvasOrDoc);canvas.addEventListener("gesturehold",PreventDefaultOnCanvasOrDoc);window.addEventListener("touchstart",PreventDefaultOnCanvasOrDoc,{"passive":false});if(typeof PointerEvent!=="undefined"){window.addEventListener("pointerdown",PreventDefaultOnCanvasOrDoc,{"passive":false});canvas.addEventListener("pointerdown",PreventDefaultOnCanvasOrDoc)}else canvas.addEventListener("touchstart",PreventDefaultOnCanvasOrDoc);this._mousePointerLastButtons=
+0;window.addEventListener("mousedown",e=>{if(e.button===1)e.preventDefault()});window.addEventListener("mousewheel",BlockWheelZoom,{"passive":false});window.addEventListener("wheel",BlockWheelZoom,{"passive":false});window.addEventListener("resize",()=>this._OnWindowResize());window.addEventListener("fullscreenchange",()=>this._OnFullscreenChange());window.addEventListener("webkitfullscreenchange",()=>this._OnFullscreenChange());window.addEventListener("mozfullscreenchange",()=>this._OnFullscreenChange());
+window.addEventListener("fullscreenerror",e=>this._OnFullscreenError(e));window.addEventListener("webkitfullscreenerror",e=>this._OnFullscreenError(e));window.addEventListener("mozfullscreenerror",e=>this._OnFullscreenError(e));if(iRuntime.IsiOSWebView())if(window["visualViewport"]){let lastVisualViewportHeight=Infinity;window["visualViewport"].addEventListener("resize",()=>{const curVisualViewportHeight=window["visualViewport"].height;if(curVisualViewportHeight>lastVisualViewportHeight)document.scrollingElement.scrollTop=
+0;lastVisualViewportHeight=curVisualViewportHeight})}else window.addEventListener("focusout",()=>{if(!KeyboardIsVisible())document.scrollingElement.scrollTop=0});self["C3WrapperOnMessage"]=msg=>this._OnWrapperMessage(msg);this._mediaPendingPlay=new Set;this._mediaRemovedPendingPlay=new WeakSet;this._isSilent=false}_OnBeforeStartTicking(){self.setTimeout(()=>{this._enableAndroidVKDetection=true},1E3);if(this._iRuntime.GetExportType()==="cordova"){document.addEventListener("pause",()=>this._OnVisibilityChange(true));
+document.addEventListener("resume",()=>this._OnVisibilityChange(false))}else document.addEventListener("visibilitychange",()=>this._OnVisibilityChange(document.hidden));return{"isSuspended":!!(document.hidden||isCordovaPaused)}}Attach(){window.addEventListener("focus",()=>this._PostRuntimeEvent("window-focus"));window.addEventListener("blur",()=>{this._PostRuntimeEvent("window-blur",{"parentHasFocus":ParentHasFocus()});this._mousePointerLastButtons=0});window.addEventListener("focusin",e=>{if(IsKeyboardInputElement(e.target))this._PostRuntimeEvent("keyboard-blur")});
+window.addEventListener("keydown",e=>this._OnKeyEvent("keydown",e));window.addEventListener("keyup",e=>this._OnKeyEvent("keyup",e));window.addEventListener("dblclick",e=>this._OnMouseEvent("dblclick",e,DISPATCH_RUNTIME_AND_SCRIPT));window.addEventListener("wheel",e=>this._OnMouseWheelEvent("wheel",e));if(typeof PointerEvent!=="undefined"){window.addEventListener("pointerdown",e=>{this._HandlePointerDownFocus(e);this._OnPointerEvent("pointerdown",e)});if(this._iRuntime.UsesWorker()&&typeof window["onpointerrawupdate"]!==
+"undefined"&&self===self.top)window.addEventListener("pointerrawupdate",e=>this._OnPointerRawUpdate(e));else window.addEventListener("pointermove",e=>this._OnPointerEvent("pointermove",e));window.addEventListener("pointerup",e=>this._OnPointerEvent("pointerup",e));window.addEventListener("pointercancel",e=>this._OnPointerEvent("pointercancel",e))}else{window.addEventListener("mousedown",e=>{this._HandlePointerDownFocus(e);this._OnMouseEventAsPointer("pointerdown",e)});window.addEventListener("mousemove",
+e=>this._OnMouseEventAsPointer("pointermove",e));window.addEventListener("mouseup",e=>this._OnMouseEventAsPointer("pointerup",e));window.addEventListener("touchstart",e=>{this._HandlePointerDownFocus(e);this._OnTouchEvent("pointerdown",e)});window.addEventListener("touchmove",e=>this._OnTouchEvent("pointermove",e));window.addEventListener("touchend",e=>this._OnTouchEvent("pointerup",e));window.addEventListener("touchcancel",e=>this._OnTouchEvent("pointercancel",e))}const playFunc=()=>this._PlayPendingMedia();
+window.addEventListener("pointerup",playFunc,true);window.addEventListener("touchend",playFunc,true);window.addEventListener("click",playFunc,true);window.addEventListener("keydown",playFunc,true);window.addEventListener("gamepadconnected",playFunc,true);if(this._iRuntime.IsAndroid()&&!this._iRuntime.IsAndroidWebView()&&navigator["virtualKeyboard"]){navigator["virtualKeyboard"]["overlaysContent"]=true;navigator["virtualKeyboard"].addEventListener("geometrychange",()=>{this._OnAndroidVirtualKeyboardChange(this._GetWindowInnerHeight(),
+navigator["virtualKeyboard"]["boundingRect"]["height"])})}}_OnAndroidVirtualKeyboardChange(windowHeight,vkHeight){document.body.style.transform="";this._vkTranslateYOffset=0;if(vkHeight>0){const activeElement=document.activeElement;if(activeElement){const rc=activeElement.getBoundingClientRect();const rcMidY=(rc.top+rc.bottom)/2;const targetY=(windowHeight-vkHeight)/2;let shiftY=rcMidY-targetY;if(shiftY>vkHeight)shiftY=vkHeight;if(shiftY<0)shiftY=0;if(shiftY>0){document.body.style.transform=`translateY(${-shiftY}px)`;
+this._vkTranslateYOffset=shiftY}}}}_PostRuntimeEvent(name,data){this.PostToRuntime(name,data||null,DISPATCH_RUNTIME_ONLY)}_GetWindowInnerWidth(){return this._iRuntime._GetWindowInnerWidth()}_GetWindowInnerHeight(){return this._iRuntime._GetWindowInnerHeight()}_EnableWindowResizeEvent(){this._enableWindowResizeEvent=true;this._lastWindowWidth=this._iRuntime._GetWindowInnerWidth();this._lastWindowHeight=this._iRuntime._GetWindowInnerHeight()}_OnWindowResize(){if(this._isExportToVideo)return;if(!this._enableWindowResizeEvent)return;
+const width=this._GetWindowInnerWidth();const height=this._GetWindowInnerHeight();if(this._iRuntime.IsAndroidWebView())if(this._enableAndroidVKDetection)if(this._lastWindowWidth===width&&height<this._lastWindowHeight){this._virtualKeyboardHeight=this._lastWindowHeight-height;this._OnAndroidVirtualKeyboardChange(this._lastWindowHeight,this._virtualKeyboardHeight);return}else{if(this._virtualKeyboardHeight>0){this._virtualKeyboardHeight=0;this._OnAndroidVirtualKeyboardChange(height,this._virtualKeyboardHeight)}this._lastWindowWidth=
+width;this._lastWindowHeight=height}else{this._lastWindowWidth=width;this._lastWindowHeight=height}this.PostToRuntime("window-resize",{"innerWidth":width,"innerHeight":height,"devicePixelRatio":window.devicePixelRatio,"isFullscreen":RuntimeInterface.IsDocumentFullscreen()});if(this._iRuntime.IsiOSWebView()){if(this._simulatedResizeTimerId!==-1)clearTimeout(this._simulatedResizeTimerId);this._OnSimulatedResize(width,height,0)}}_ScheduleSimulatedResize(width,height,count){if(this._simulatedResizeTimerId!==
+-1)clearTimeout(this._simulatedResizeTimerId);this._simulatedResizeTimerId=setTimeout(()=>this._OnSimulatedResize(width,height,count),48)}_OnSimulatedResize(originalWidth,originalHeight,count){const width=this._GetWindowInnerWidth();const height=this._GetWindowInnerHeight();this._simulatedResizeTimerId=-1;if(width!=originalWidth||height!=originalHeight)this.PostToRuntime("window-resize",{"innerWidth":width,"innerHeight":height,"devicePixelRatio":window.devicePixelRatio,"isFullscreen":RuntimeInterface.IsDocumentFullscreen()});
+else if(count<10)this._ScheduleSimulatedResize(width,height,count+1)}_OnSetTargetOrientation(e){this._targetOrientation=e["targetOrientation"]}_TrySetTargetOrientation(){const orientation=this._targetOrientation;if(screen["orientation"]&&screen["orientation"]["lock"])screen["orientation"]["lock"](orientation).catch(err=>console.warn("[Construct] Failed to lock orientation: ",err));else try{let result=false;if(screen["lockOrientation"])result=screen["lockOrientation"](orientation);else if(screen["webkitLockOrientation"])result=
+screen["webkitLockOrientation"](orientation);else if(screen["mozLockOrientation"])result=screen["mozLockOrientation"](orientation);else if(screen["msLockOrientation"])result=screen["msLockOrientation"](orientation);if(!result)console.warn("[Construct] Failed to lock orientation")}catch(err){console.warn("[Construct] Failed to lock orientation: ",err)}}_OnFullscreenChange(){if(this._isExportToVideo)return;const isDocFullscreen=RuntimeInterface.IsDocumentFullscreen();if(isDocFullscreen&&this._targetOrientation!==
+"any")this._TrySetTargetOrientation();this.PostToRuntime("fullscreenchange",{"isFullscreen":isDocFullscreen,"innerWidth":this._GetWindowInnerWidth(),"innerHeight":this._GetWindowInnerHeight()})}_OnFullscreenError(e){console.warn("[Construct] Fullscreen request failed: ",e);this.PostToRuntime("fullscreenerror",{"isFullscreen":RuntimeInterface.IsDocumentFullscreen(),"innerWidth":this._GetWindowInnerWidth(),"innerHeight":this._GetWindowInnerHeight()})}_OnVisibilityChange(isHidden){if(isHidden)this._iRuntime._CancelAnimationFrame();
+else this._iRuntime._RequestAnimationFrame();this.PostToRuntime("visibilitychange",{"hidden":isHidden})}_OnKeyEvent(name,e){if(e.key==="Backspace")PreventDefaultOnCanvasOrDoc(e);if(this._isExportToVideo)return;const code=KEY_CODE_ALIASES.get(e.code)||e.code;this._PostToRuntimeMaybeSync(name,{"code":code,"key":e.key,"which":e.which,"repeat":e.repeat,"altKey":e.altKey,"ctrlKey":e.ctrlKey,"metaKey":e.metaKey,"shiftKey":e.shiftKey,"timeStamp":e.timeStamp},DISPATCH_RUNTIME_AND_SCRIPT)}_OnMouseWheelEvent(name,
+e){if(this._isExportToVideo)return;this.PostToRuntime(name,{"clientX":e.clientX,"clientY":e.clientY+this._vkTranslateYOffset,"pageX":e.pageX,"pageY":e.pageY+this._vkTranslateYOffset,"deltaX":e.deltaX,"deltaY":e.deltaY,"deltaZ":e.deltaZ,"deltaMode":e.deltaMode,"timeStamp":e.timeStamp},DISPATCH_RUNTIME_AND_SCRIPT)}_OnMouseEvent(name,e,opts){if(this._isExportToVideo)return;if(IsCompatibilityMouseEvent(e))return;this._PostToRuntimeMaybeSync(name,{"button":e.button,"buttons":e.buttons,"clientX":e.clientX,
+"clientY":e.clientY+this._vkTranslateYOffset,"pageX":e.pageX,"pageY":e.pageY+this._vkTranslateYOffset,"movementX":e.movementX||0,"movementY":e.movementY||0,"timeStamp":e.timeStamp},opts)}_OnMouseEventAsPointer(name,e){if(this._isExportToVideo)return;if(IsCompatibilityMouseEvent(e))return;const pointerId=1;const lastButtons=this._mousePointerLastButtons;if(name==="pointerdown"&&lastButtons!==0)name="pointermove";else if(name==="pointerup"&&e.buttons!==0)name="pointermove";this._PostToRuntimeMaybeSync(name,
+{"pointerId":pointerId,"pointerType":"mouse","button":e.button,"buttons":e.buttons,"lastButtons":lastButtons,"clientX":e.clientX,"clientY":e.clientY+this._vkTranslateYOffset,"pageX":e.pageX,"pageY":e.pageY+this._vkTranslateYOffset,"movementX":e.movementX||0,"movementY":e.movementY||0,"width":0,"height":0,"pressure":0,"tangentialPressure":0,"tiltX":0,"tiltY":0,"twist":0,"timeStamp":e.timeStamp},DISPATCH_RUNTIME_AND_SCRIPT);this._mousePointerLastButtons=e.buttons;this._OnMouseEvent(e.type,e,DISPATCH_SCRIPT_ONLY)}_OnPointerEvent(name,
+e){if(this._isExportToVideo)return;let lastButtons=0;if(e.pointerType==="mouse")lastButtons=this._mousePointerLastButtons;this._PostToRuntimeMaybeSync(name,{"pointerId":e.pointerId,"pointerType":e.pointerType,"button":e.button,"buttons":e.buttons,"lastButtons":lastButtons,"clientX":e.clientX,"clientY":e.clientY+this._vkTranslateYOffset,"pageX":e.pageX,"pageY":e.pageY+this._vkTranslateYOffset,"movementX":e.movementX||0,"movementY":e.movementY||0,"width":e.width||0,"height":e.height||0,"pressure":e.pressure||
+0,"tangentialPressure":e["tangentialPressure"]||0,"tiltX":e.tiltX||0,"tiltY":e.tiltY||0,"twist":e["twist"]||0,"timeStamp":e.timeStamp},DISPATCH_RUNTIME_AND_SCRIPT);if(e.pointerType==="mouse"){let mouseEventName="mousemove";if(name==="pointerdown")mouseEventName="mousedown";else if(name==="pointerup")mouseEventName="mouseup";this._OnMouseEvent(mouseEventName,e,DISPATCH_SCRIPT_ONLY);this._mousePointerLastButtons=e.buttons}}_OnPointerRawUpdate(e){this._OnPointerEvent("pointermove",e)}_OnTouchEvent(fireName,
+e){if(this._isExportToVideo)return;for(let i=0,len=e.changedTouches.length;i<len;++i){const t=e.changedTouches[i];this._PostToRuntimeMaybeSync(fireName,{"pointerId":t.identifier,"pointerType":"touch","button":0,"buttons":0,"lastButtons":0,"clientX":t.clientX,"clientY":t.clientY+this._vkTranslateYOffset,"pageX":t.pageX,"pageY":t.pageY+this._vkTranslateYOffset,"movementX":e.movementX||0,"movementY":e.movementY||0,"width":(t["radiusX"]||t["webkitRadiusX"]||0)*2,"height":(t["radiusY"]||t["webkitRadiusY"]||
+0)*2,"pressure":t["force"]||t["webkitForce"]||0,"tangentialPressure":0,"tiltX":0,"tiltY":0,"twist":t["rotationAngle"]||0,"timeStamp":e.timeStamp},DISPATCH_RUNTIME_AND_SCRIPT)}}_HandlePointerDownFocus(e){if(window!==window.top)window.focus();if(this._IsElementCanvasOrDocument(e.target)&&document.activeElement&&!this._IsElementCanvasOrDocument(document.activeElement))document.activeElement.blur()}_IsElementCanvasOrDocument(elem){return!elem||elem===document||elem===window||elem===document.body||elem.tagName.toLowerCase()===
+"canvas"}_AttachDeviceOrientationEvent(){if(this._attachedDeviceOrientationEvent)return;this._attachedDeviceOrientationEvent=true;window.addEventListener("deviceorientation",e=>this._OnDeviceOrientation(e));window.addEventListener("deviceorientationabsolute",e=>this._OnDeviceOrientationAbsolute(e))}_AttachDeviceMotionEvent(){if(this._attachedDeviceMotionEvent)return;this._attachedDeviceMotionEvent=true;window.addEventListener("devicemotion",e=>this._OnDeviceMotion(e))}_OnDeviceOrientation(e){if(this._isExportToVideo)return;
+this.PostToRuntime("deviceorientation",{"absolute":!!e["absolute"],"alpha":e["alpha"]||0,"beta":e["beta"]||0,"gamma":e["gamma"]||0,"timeStamp":e.timeStamp,"webkitCompassHeading":e["webkitCompassHeading"],"webkitCompassAccuracy":e["webkitCompassAccuracy"]},DISPATCH_RUNTIME_AND_SCRIPT)}_OnDeviceOrientationAbsolute(e){if(this._isExportToVideo)return;this.PostToRuntime("deviceorientationabsolute",{"absolute":!!e["absolute"],"alpha":e["alpha"]||0,"beta":e["beta"]||0,"gamma":e["gamma"]||0,"timeStamp":e.timeStamp},
+DISPATCH_RUNTIME_AND_SCRIPT)}_OnDeviceMotion(e){if(this._isExportToVideo)return;let accProp=null;const acc=e["acceleration"];if(acc)accProp={"x":acc["x"]||0,"y":acc["y"]||0,"z":acc["z"]||0};let withGProp=null;const withG=e["accelerationIncludingGravity"];if(withG)withGProp={"x":withG["x"]||0,"y":withG["y"]||0,"z":withG["z"]||0};let rotationRateProp=null;const rotationRate=e["rotationRate"];if(rotationRate)rotationRateProp={"alpha":rotationRate["alpha"]||0,"beta":rotationRate["beta"]||0,"gamma":rotationRate["gamma"]||
+0};this.PostToRuntime("devicemotion",{"acceleration":accProp,"accelerationIncludingGravity":withGProp,"rotationRate":rotationRateProp,"interval":e["interval"],"timeStamp":e.timeStamp},DISPATCH_RUNTIME_AND_SCRIPT)}_OnUpdateCanvasSize(e){const runtimeInterface=this.GetRuntimeInterface();if(runtimeInterface.IsExportingToVideo())return;const canvas=runtimeInterface.GetCanvas();canvas.style.width=e["styleWidth"]+"px";canvas.style.height=e["styleHeight"]+"px";canvas.style.marginLeft=e["marginLeft"]+"px";
+canvas.style.marginTop=e["marginTop"]+"px";document.documentElement.style.setProperty("--construct-scale",e["displayScale"]);if(this._isFirstSizeUpdate){canvas.style.display="";this._isFirstSizeUpdate=false}}_OnInvokeDownload(e){const url=e["url"];const filename=e["filename"];const a=document.createElement("a");const body=document.body;a.textContent=filename;a.href=url;a.download=filename;body.appendChild(a);a.click();body.removeChild(a)}async _OnLoadWebFonts(e){const webfonts=e["webfonts"];await Promise.all(webfonts.map(async info=>
+{const fontFace=new FontFace(info.name,`url('${info.url}')`);document.fonts.add(fontFace);await fontFace.load()}))}async _OnRasterSvgImage(e){const blob=e["blob"];const imageWidth=e["imageWidth"];const imageHeight=e["imageHeight"];const surfaceWidth=e["surfaceWidth"];const surfaceHeight=e["surfaceHeight"];const imageBitmapOpts=e["imageBitmapOpts"];const canvas=await self["C3_RasterSvgImageBlob"](blob,imageWidth,imageHeight,surfaceWidth,surfaceHeight);let ret;if(imageBitmapOpts)ret=await createImageBitmap(canvas,
+imageBitmapOpts);else ret=await createImageBitmap(canvas);return{"imageBitmap":ret,"transferables":[ret]}}async _OnGetSvgImageSize(e){return await self["C3_GetSvgImageSize"](e["blob"])}async _OnAddStylesheet(e){await AddStyleSheet(e["url"])}_PlayPendingMedia(){const mediaToTryPlay=[...this._mediaPendingPlay];this._mediaPendingPlay.clear();if(!this._isSilent)for(const mediaElem of mediaToTryPlay){const playRet=mediaElem.play();if(playRet)playRet.catch(err=>{if(!this._mediaRemovedPendingPlay.has(mediaElem))this._mediaPendingPlay.add(mediaElem)})}}TryPlayMedia(mediaElem){if(typeof mediaElem.play!==
+"function")throw new Error("missing play function");this._mediaRemovedPendingPlay.delete(mediaElem);let playRet;try{playRet=mediaElem.play()}catch(err){this._mediaPendingPlay.add(mediaElem);return}if(playRet)playRet.catch(err=>{if(!this._mediaRemovedPendingPlay.has(mediaElem))this._mediaPendingPlay.add(mediaElem)})}RemovePendingPlay(mediaElem){this._mediaPendingPlay.delete(mediaElem);this._mediaRemovedPendingPlay.add(mediaElem)}SetSilent(s){this._isSilent=!!s}_OnHideCordovaSplash(){if(navigator["splashscreen"]&&
+navigator["splashscreen"]["hide"])navigator["splashscreen"]["hide"]()}_OnDebugHighlight(e){const show=e["show"];if(!show){if(this._debugHighlightElem)this._debugHighlightElem.style.display="none";return}if(!this._debugHighlightElem){this._debugHighlightElem=document.createElement("div");this._debugHighlightElem.id="inspectOutline";document.body.appendChild(this._debugHighlightElem)}const elem=this._debugHighlightElem;elem.style.display="";elem.style.left=e["left"]-1+"px";elem.style.top=e["top"]-1+
+"px";elem.style.width=e["width"]+2+"px";elem.style.height=e["height"]+2+"px";elem.textContent=e["name"]}_OnRegisterSW(){if(window["C3_RegisterSW"])window["C3_RegisterSW"]()}_OnPostToDebugger(data){if(!window["c3_postToMessagePort"])return;data["from"]="runtime";window["c3_postToMessagePort"](data)}_InvokeFunctionFromJS(name,params){return this.PostToRuntimeAsync("js-invoke-function",{"name":name,"params":params})}_OnScriptCreateWorker(e){const url=e["url"];const opts=e["opts"];const port2=e["port2"];
+const worker=new Worker(url,opts);worker.postMessage({"type":"construct-worker-init","port2":port2},[port2])}_OnAlert(e){alert(e["message"])}_OnWrapperMessage(msg){if(msg==="entered-fullscreen"){RuntimeInterface._SetWrapperIsFullscreenFlag(true);this._OnFullscreenChange()}else if(msg==="exited-fullscreen"){RuntimeInterface._SetWrapperIsFullscreenFlag(false);this._OnFullscreenChange()}else console.warn("Unknown wrapper message: ",msg)}_OnScreenReaderTextEvent(e){const type=e["type"];if(type==="create"){const p=
+document.createElement("p");p.id="c3-sr-"+e["id"];p.textContent=e["text"];this._screenReaderTextWrap.appendChild(p)}else if(type==="update"){const p=document.getElementById("c3-sr-"+e["id"]);if(p)p.textContent=e["text"];else console.warn(`[Construct] Missing screen reader text with id ${e["id"]}`)}else if(type==="release"){const p=document.getElementById("c3-sr-"+e["id"]);if(p)p.remove();else console.warn(`[Construct] Missing screen reader text with id ${e["id"]}`)}else console.warn(`[Construct] Unknown screen reader text update '${type}'`)}_SetExportingToVideo(e){this._isExportToVideo=
+true;const headerElem=document.createElement("h1");headerElem.id="exportToVideoMessage";headerElem.textContent=e["message"];document.body.prepend(headerElem);document.body.classList.add("exportingToVideo");this.GetRuntimeInterface().GetCanvas().style.display="";this._iRuntime.SetIsExportingToVideo(e["duration"])}_OnExportVideoProgress(e){this._exportVideoProgressMessage=e["message"];if(this._exportVideoUpdateTimerId===-1)this._exportVideoUpdateTimerId=setTimeout(()=>this._DoUpdateExportVideoProgressMessage(),
+250)}_DoUpdateExportVideoProgressMessage(){this._exportVideoUpdateTimerId=-1;const headerElem=document.getElementById("exportToVideoMessage");if(headerElem)headerElem.textContent=this._exportVideoProgressMessage}_OnExportedToVideo(e){window.c3_postToMessagePort({"type":"exported-video","arrayBuffer":e["arrayBuffer"],"contentType":e["contentType"],"time":e["time"]})}_OnExportedToImageSequence(e){window.c3_postToMessagePort({"type":"exported-image-sequence","blobArr":e["blobArr"],"time":e["time"],"gif":e["gif"]})}};
+RuntimeInterface.AddDOMHandlerClass(HANDLER_CLASS)};
+
+
+'use strict';{const DISPATCH_WORKER_SCRIPT_NAME="dispatchworker.js";const JOB_WORKER_SCRIPT_NAME="jobworker.js";self.JobSchedulerDOM=class JobSchedulerDOM{constructor(runtimeInterface){this._runtimeInterface=runtimeInterface;this._baseUrl=runtimeInterface.GetRuntimeBaseURL();if(runtimeInterface.GetExportType()==="preview")this._baseUrl+="workers/";else this._baseUrl+=runtimeInterface.GetScriptFolder();this._maxNumWorkers=Math.min(navigator.hardwareConcurrency||2,16);this._dispatchWorker=null;this._jobWorkers=
+[];this._inputPort=null;this._outputPort=null}_GetWorkerScriptFolder(){if(this._runtimeInterface.GetExportType()==="playable-ad")return this._runtimeInterface.GetScriptFolder();else return""}async Init(){if(this._hasInitialised)throw new Error("already initialised");this._hasInitialised=true;const dispatchWorkerScriptUrl=this._runtimeInterface._GetWorkerURL(this._GetWorkerScriptFolder()+DISPATCH_WORKER_SCRIPT_NAME);this._dispatchWorker=await this._runtimeInterface.CreateWorker(dispatchWorkerScriptUrl,
+this._baseUrl,{name:"DispatchWorker"});const messageChannel=new MessageChannel;this._inputPort=messageChannel.port1;this._dispatchWorker.postMessage({"type":"_init","in-port":messageChannel.port2},[messageChannel.port2]);this._outputPort=await this._CreateJobWorker()}async _CreateJobWorker(){const number=this._jobWorkers.length;const jobWorkerScriptUrl=this._runtimeInterface._GetWorkerURL(this._GetWorkerScriptFolder()+JOB_WORKER_SCRIPT_NAME);const jobWorker=await this._runtimeInterface.CreateWorker(jobWorkerScriptUrl,
+this._baseUrl,{name:"JobWorker"+number});const dispatchChannel=new MessageChannel;const outputChannel=new MessageChannel;this._dispatchWorker.postMessage({"type":"_addJobWorker","port":dispatchChannel.port1},[dispatchChannel.port1]);jobWorker.postMessage({"type":"init","number":number,"dispatch-port":dispatchChannel.port2,"output-port":outputChannel.port2},[dispatchChannel.port2,outputChannel.port2]);this._jobWorkers.push(jobWorker);return outputChannel.port1}GetPortData(){return{"inputPort":this._inputPort,
+"outputPort":this._outputPort,"maxNumWorkers":this._maxNumWorkers}}GetPortTransferables(){return[this._inputPort,this._outputPort]}}};
+
+
+'use strict';{if(window["C3_IsSupported"]){const enableWorker=true;window["c3_runtimeInterface"]=new self.RuntimeInterface({useWorker:enableWorker,workerMainUrl:"workermain.js",engineScripts:["scripts/c3runtime.js"],projectScripts:[],mainProjectScript:"",scriptFolder:"scripts/",workerDependencyScripts:[],exportType:"html5"})}};
+'use strict';{const DOM_COMPONENT_ID="text-input";function StopPropagation(e){e.stopPropagation()}function StopKeyPropagation(e){if(e.which!==13&&e.which!==27)e.stopPropagation()}const HANDLER_CLASS=class TextInputDOMHandler extends self.DOMElementHandler{constructor(iRuntime){super(iRuntime,DOM_COMPONENT_ID);this.AddDOMElementMessageHandler("scroll-to-bottom",elem=>this._OnScrollToBottom(elem))}CreateElement(elementId,e){let elem;const type=e["type"];if(type==="textarea"){elem=document.createElement("textarea");
+elem.style.resize="none"}else{elem=document.createElement("input");elem.type=type}elem.style.position="absolute";elem.autocomplete="off";elem.addEventListener("pointerdown",StopPropagation);elem.addEventListener("pointermove",StopPropagation);elem.addEventListener("pointerrawupdate",StopPropagation);elem.addEventListener("pointerup",StopPropagation);elem.addEventListener("mousedown",StopPropagation);elem.addEventListener("mouseup",StopPropagation);elem.addEventListener("keydown",StopKeyPropagation);
+elem.addEventListener("keyup",StopKeyPropagation);elem.addEventListener("click",e=>{e.stopPropagation();this._PostToRuntimeElementMaybeSync("click",elementId)});elem.addEventListener("dblclick",e=>{e.stopPropagation();this._PostToRuntimeElementMaybeSync("dblclick",elementId)});elem.addEventListener("input",()=>this.PostToRuntimeElement("change",elementId,{"text":elem.value}));if(e["id"])elem.id=e["id"];if(e["className"])elem.className=e["className"];this.UpdateState(elem,e);return elem}UpdateState(elem,
+e){elem.value=e["text"];elem.placeholder=e["placeholder"];elem.title=e["title"];elem.disabled=!e["isEnabled"];elem.readOnly=e["isReadOnly"];elem.spellcheck=e["spellCheck"];const maxLength=e["maxLength"];if(maxLength<0)elem.removeAttribute("maxlength");else elem.setAttribute("maxlength",maxLength)}_OnScrollToBottom(elem){elem.scrollTop=elem.scrollHeight}};self.RuntimeInterface.AddDOMHandlerClass(HANDLER_CLASS)};
+'use strict';{const DOM_COMPONENT_ID="button";function StopPropagation(e){e.stopPropagation()}const HANDLER_CLASS=class ButtonDOMHandler extends self.DOMElementHandler{constructor(iRuntime){super(iRuntime,DOM_COMPONENT_ID)}CreateElement(elementId,e){const inputElem=document.createElement("input");const isCheckbox=e["isCheckbox"];let mainElem=inputElem;if(isCheckbox){inputElem.type="checkbox";const labelElem=document.createElement("label");labelElem.appendChild(inputElem);labelElem.appendChild(document.createTextNode(""));
+labelElem.style.fontFamily="sans-serif";labelElem.style.userSelect="none";labelElem.style.webkitUserSelect="none";labelElem.style.display="inline-block";labelElem.style.color="black";mainElem=labelElem}else inputElem.type="button";mainElem.style.position="absolute";mainElem.addEventListener("pointerdown",StopPropagation);mainElem.addEventListener("pointermove",StopPropagation);mainElem.addEventListener("pointerrawupdate",StopPropagation);mainElem.addEventListener("pointerup",StopPropagation);mainElem.addEventListener("mousedown",
+StopPropagation);mainElem.addEventListener("mouseup",StopPropagation);mainElem.addEventListener("keydown",StopPropagation);mainElem.addEventListener("keyup",StopPropagation);inputElem.addEventListener("click",()=>this._PostToRuntimeElementMaybeSync("click",elementId,{"isChecked":inputElem.checked}));if(e["id"])inputElem.id=e["id"];if(e["className"])inputElem.className=e["className"];this.UpdateState(mainElem,e);return mainElem}_GetInputElem(mainElem){if(mainElem.tagName.toLowerCase()==="input")return mainElem;
+else return mainElem.firstChild}_GetFocusElement(mainElem){return this._GetInputElem(mainElem)}UpdateState(mainElem,e){const inputElem=this._GetInputElem(mainElem);inputElem.checked=e["isChecked"];inputElem.disabled=!e["isEnabled"];mainElem.title=e["title"];if(mainElem===inputElem)inputElem.value=e["text"];else mainElem.lastChild.textContent=e["text"]}};self.RuntimeInterface.AddDOMHandlerClass(HANDLER_CLASS)};
+"use strict";
+{
+    const DOM_COMPONENT_ID = "sparsha_firebase_sdk";
+    function StopPropagation(e) {
+        e.stopPropagation();
+    }
+    const HANDLER_CLASS = class MyDOMHandler extends self.DOMHandler {
+        constructor(iRuntime) {
+            super(iRuntime, DOM_COMPONENT_ID);
+            var self = this;
+
+            async function DoAsync(e) {
+
+            }
+
+            function DoSync(e) {
+                //action,sdkName,plugin_uid,recaptchatoken
+                //remove_app,remove_auth,remove_database,remove_storage
+                //enable_auth,enable_database,enable_storage,enable_appcheck
+                //apiKey,projectId,databaseURL,messagingSenderId,appId,version
+                //debug,autoLoad,tseconds
+                var Result = {
+                    action: e.action,
+                    status: "none",
+                    userBasic: {},
+                    userPro: {},
+                };
+                var firebase = globalThis.sparshaFirebase;
+
+                function returnData() {
+                    self.PostToRuntime("run_sparsha_fSDK" + e.plugin_uid, Result)
+                }
+
+                if (e.action === "init" || e.action === "reconnect") {
+                    function setAuthListener() {
+                        var authExpBasic = {};
+                        var authExpPro = {};
+                        var myAuth = firebase.myAuth[e.sdkName];
+                        if (firebase._loadedApp[e.sdkName] !== 1 || e.action === "reconnect") {
+                            firebase.auth.onAuthStateChanged(myAuth, (user) => {
+                                var authMapRes = firebase._GetAuthMapData(user, e.sdkName);
+                                authExpBasic = authMapRes.authExpBasic;
+                                authExpPro = authMapRes.authExpPro;
+                                if (user) {
+                                    if (e.debug) {
+                                        console.log("LOGGED IN" + "\nsdkObject: " + e.sdkName + "\nuserID: " + authExpBasic["myUID"] + "\nprovider: " + authExpBasic["providerID"] + "\nemail: " + authExpBasic["myEmail"] + "\nisEmailVerified: " + authExpBasic["isEmailVerified"] + "\nusername: " + authExpBasic["username"] + "\nphone: " + authExpBasic["phoneNo"] + "\nphotoURL: " + authExpBasic["photoURL"] + "\n ");
+                                    }
+                                }
+                                else {
+                                    if (e.debug) console.log("LOGGED OUT" + "\nsdkObject: " + e.sdkName + "\n ");
+                                }
+                                Result.status = "success";
+                                Result.userBasic = authExpBasic;
+                                Result.userPro = authExpPro;
+                                returnData();
+                                authExpPro.TrigNotEvent=0;
+                                firebase._loadedApp[e.sdkName] = 1;
+
+                            });
+                        }
+                    }
+                    function startInitApp(firebaseConfig) {
+                        if (e.sdkName === firebase.mainSdkName) firebase.myApp[e.sdkName] = firebase.app.initializeApp(firebaseConfig);
+                        else firebase.myApp[e.sdkName] = firebase.app.initializeApp(firebaseConfig, e.sdkName);
+
+                        if (typeof firebase._res[e.sdkName] === "undefined") firebase._res[e.sdkName] = {};
+
+                        if (e.enable_database) {
+                            firebase.myDatabase[e.sdkName] = firebase.database.getDatabase(firebase.myApp[e.sdkName]);
+                            if (firebase._dbDetailLog) firebase.database.enableLogging(true);
+                        }
+                        if (e.enable_firestore) firebase.myFirestore[e.sdkName] = firebase.firestore.getFirestore(firebase.myApp[e.sdkName]);
+                        if (e.enable_storage) firebase.myStorage[e.sdkName] = firebase.storage.getStorage(firebase.myApp[e.sdkName]);
+                        if (e.enable_analytics) firebase.myAnalytics[e.sdkName] = firebase.analytics.getAnalytics(firebase.myApp[e.sdkName]);
+                        if (e.enable_remoteconfig) {
+                            firebase.myRemoteConfig[e.sdkName] = firebase.remoteconfig.getRemoteConfig(firebase.myApp[e.sdkName]);
+                            var remoteConfig = firebase.myRemoteConfig[e.sdkName];
+                            remoteConfig.settings.minimumFetchIntervalMillis = e.remoteConfigTime * 1000;
+                            remoteConfig.defaultConfig = e.remoteConfigDefault;
+                        }
+                        if (e.enable_performance) firebase.myPerformance[e.sdkName] = firebase.performance.getPerformance(firebase.myApp[e.sdkName]);
+                        if (e.enable_appcheck) {
+                            firebase.appcheck.initializeAppCheck(firebase.myApp[e.sdkName], {
+                                provider: new firebase.appcheck.ReCaptchaV3Provider(e.recaptchatoken),
+                                isTokenAutoRefreshEnabled: true
+                            });
+                        }
+                        if (e.enable_auth) {
+                            firebase.myAuth[e.sdkName] = firebase.auth.getAuth(firebase.myApp[e.sdkName]);
+                            setAuthListener();
+                        }
+                        else {
+                            firebase._loadedApp[e.sdkName] = 1;
+                            Result.status = "success";
+                            returnData();
+                        }
+                    }
+
+                    if (e.action === "init") {
+                        if (typeof firebase.mainSdkName === "undefined") firebase.mainSdkName = e.sdkName;
+
+                        if (e.sdkName === firebase.mainSdkName) {
+                            var iApp = ["deleteApp", "getApp", "initializeApp"];
+                            var iAppCheck = ["initializeAppCheck", "ReCaptchaV3Provider"];
+                            var iAuth = [
+                                "createUserWithEmailAndPassword",
+                                "deleteUser",
+                                "getAdditionalUserInfo",
+                                "getAuth",
+                                "linkWithCredential",
+                                "linkWithPhoneNumber",
+                                "linkWithPopup",
+                                "linkWithRedirect",
+                                "onAuthStateChanged",
+                                "sendEmailVerification",
+                                "sendPasswordResetEmail",
+                                "setPersistence",
+                                "signInAnonymously",
+                                "signInWithCredential",
+                                "signInWithEmailAndPassword",
+                                "signInWithPhoneNumber",
+                                "signInWithPopup",
+                                "signInWithRedirect",
+                                "signInWithCustomToken",
+                                "signOut",
+                                "unlink",
+                                "updateEmail",
+                                "updatePassword",
+                                "updatePhoneNumber",
+                                "updateProfile",
+                                "useDeviceLanguage",
+                                "AuthCredential",
+                                "EmailAuthCredential",
+                                "EmailAuthProvider",
+                                "FacebookAuthProvider",
+                                "GithubAuthProvider",
+                                "GoogleAuthProvider",
+                                "OAuthProvider",
+                                "OAuthCredential",
+                                "PhoneAuthCredential",
+                                "PhoneAuthProvider",
+                                "RecaptchaVerifier",
+                                "TwitterAuthProvider",
+                            ];
+                            var iRD = [
+                                "enableLogging",
+                                "endAt",
+                                "endBefore",
+                                "equalTo",
+                                "get",
+                                "getDatabase",
+                                "goOffline",
+                                "goOnline",
+                                "increment",
+                                "limitToFirst",
+                                "limitToLast",
+                                "off",
+                                "onChildAdded",
+                                "onChildChanged",
+                                "onChildMoved",
+                                "onChildRemoved",
+                                "onDisconnect",
+                                "onValue",
+                                "orderByChild",
+                                "orderByKey",
+                                "orderByValue",
+                                "push",
+                                "query",
+                                "ref",
+                                "set",
+                                "remove",
+                                "runTransaction",
+                                "serverTimestamp",
+                                "startAfter",
+                                "startAt",
+                                "update",
+                            ];
+                            var iFirestore = [
+                                "addDoc",
+                                "arrayRemove",
+                                "arrayUnion",
+                                "clearIndexedDbPersistence",
+                                "collection",
+                                "collectionGroup",
+                                "deleteDoc",
+                                "deleteField",
+                                "disableNetwork",
+                                "doc",
+                                "documentId",
+                                "enableIndexedDbPersistence",
+                                "enableMultiTabIndexedDbPersistence",
+                                "enableNetwork",
+                                "endAt",
+                                "endBefore",
+                                "getDoc",
+                                "getDocFromCache",
+                                "getDocFromServer",
+                                "getDocs",
+                                "getFirestore",
+                                "increment",
+                                "initializeFirestore",
+                                "limit",
+                                "limitToLast",
+                                "loadBundle",
+                                "namedQuery",
+                                "onSnapshot",
+                                "onSnapshotsInSync",
+                                "orderBy",
+                                "query",
+                                "refEqual",
+                                "runTransaction",
+                                "serverTimestamp",
+                                "setDoc",
+                                "setLogLevel",
+                                "snapshotEqual",
+                                "startAfter",
+                                "startAt",
+                                "terminate",
+                                "updateDoc",
+                                "waitForPendingWrites",
+                                "where",
+                                "writeBatch",
+                            ];
+                            var iStorage = [
+                                "deleteObject",
+                                "getDownloadURL",
+                                "getMetadata",
+                                "getStorage",
+                                "list",
+                                "listAll",
+                                "ref",
+                                "updateMetadata",
+                                "uploadBytes",
+                                "uploadBytesResumable",
+                                "uploadString",
+                            ];
+                            var iAnalytics = ["getAnalytics", "initializeAnalytics", "logEvent", "setAnalyticsCollectionEnabled", "setUserId", "setUserProperties"];
+                            var iRemoteConfig = ["fetchAndActivate", "getAll", "getRemoteConfig"];
+                            var iPerformance = ["getPerformance", "trace"];
+                            e.remove_remoteconfig = "";
+                            e.remove_analytics = "";
+                            e.remove_performance = "";
+
+                            const srcFirebase = "https://www.gstatic.com/firebasejs/" + e.version + "/firebase-";
+                            var importString = "";
+                            var varString = "";
+
+                            function setScriptString(arr, rem, serviceNm) {
+                                importString += "import {";
+                                varString += "globalThis.sparshaFirebase." + serviceNm + "={";
+                                rem = JSON.parse("[\"" + rem.replaceAll("\n", "\",\"") + "\"]");
+                                rem.forEach(function (item) {
+                                    const index = arr.indexOf(item);
+                                    if (index > -1) {
+                                        arr.splice(index, 1);
+                                    }
+                                });
+
+                                arr.forEach(function (item) {
+                                    if (serviceNm === "database" && (item === "ref" || item === "endAt" || item === "endBefore" || item === "increment" || item === "limitToLast" || item === "query" || item === "runTransaction" || item === "serverTimestamp" || item === "startAfter" || item === "startAt")) {
+                                        var newName = item + serviceNm;
+                                        importString += item + " as " + newName + ", ";
+                                        varString += item + ":" + newName + ",";
+                                    }
+                                    else {
+                                        importString += item + ", ";
+                                        varString += item + ":" + item + ",";
+                                    }
+                                });
+                                if (serviceNm === "appcheck") serviceNm = "app-check";
+                                if (serviceNm === "remoteconfig") serviceNm = "remote-config";
+                                importString += "  } from \"" + srcFirebase + serviceNm + ".js\";";
+                                varString += "};"
+                            }
+
+                            if (typeof window.cordova !== "undefined") e.enable_analytics = false;
+                            
+
+                            setScriptString(iApp, e.remove_app, "app");
+                            if (e.enable_appcheck) setScriptString(iAppCheck, "", "appcheck");
+
+                            if (e.enable_auth) setScriptString(iAuth, e.remove_auth, "auth");
+
+                            if (e.enable_database) setScriptString(iRD, e.remove_database, "database");
+
+                            if (e.enable_firestore) setScriptString(iFirestore, e.remove_firestore, "firestore");
+
+                            if (e.enable_storage) setScriptString(iStorage, e.remove_storage, "storage");
+
+                            if (e.enable_analytics) setScriptString(iAnalytics, e.remove_analytics, "analytics");
+
+                            if (e.enable_remoteconfig) setScriptString(iRemoteConfig, e.remove_remoteconfig, "remoteconfig");
+                            
+                            if (e.enable_performance) setScriptString(iPerformance, e.remove_performance, "performance");
+
+                            firebase._callInitApp = function () {
+                                startInitApp(e.firebaseConfig)
+                            }
+
+                            firebase._isLoaded = 0;
+                            function LoadScripts() {
+                                var script = document.createElement("script");
+                                script.type = "module";
+                                script.innerHTML = importString + varString + "globalThis.sparshaFirebase._isLoaded=1;globalThis.sparshaFirebase._callInitApp();";
+                                document.getElementsByTagName("head")[0].appendChild(script);
+                            }
+                            LoadScripts();
+                            var myTimeout = setTimeout(function () {
+                                if (firebase._isLoaded === 0) {
+                                    if (e.debug) console.error("TIMEOUT" + "\nsdkObject: " + e.sdkName);
+                                    if (e.autoLoad) LoadScripts();
+                                    Result.status = "timeout";
+                                    returnData();
+                                }
+                                else {
+                                    clearTimeout(myTimeout);
+                                }
+                            }, e.tseconds * 1000);
+
+                        }
+                        else {
+                            startInitApp(e.firebaseConfig)
+                        }
+                    }
+                    else {
+                        startInitApp(e.firebaseConfig)
+                    }
+                }
+                else if (e.action === "disconnect") {
+                    firebase.app.deleteApp(firebase.myApp[e.sdkName]);
+                }
+            }
+
+            this.AddRuntimeMessageHandler("domSync_sparsha_fSDK", DoSync);
+            //this.AddRuntimeMessageHandler("domAsync_sparsha_fSDK", DoAsync);
+        }
+    };
+    self.RuntimeInterface.AddDOMHandlerClass(HANDLER_CLASS);
+}"use strict";
+{
+    const DOM_COMPONENT_ID = "sparsha_firebase_auth";
+    function StopPropagation(e) {
+        e.stopPropagation();
+    }
+    const HANDLER_CLASS = class MyDOMHandler extends self.DOMHandler {
+        constructor(iRuntime) {
+            super(iRuntime, DOM_COMPONENT_ID);
+            var self = this;
+
+            async function DoAsync(e) {
+                var RESULT = {
+                    success: 0,
+                };
+
+                var firebase = globalThis.sparshaFirebase;
+                var auth = firebase.myAuth[e.sdkName];
+
+                if (e.action === "Signupemail" || e.action === "Signinemail" || e.action === "Signupname" || e.action === "Signinname") {
+                    var signFunc = "", theEmail = "";
+                    if (e.action === "Signupemail" || e.action === "Signupname") signFunc = "createUserWithEmailAndPassword";
+                    else signFunc = "signInWithEmailAndPassword";
+                    if (e.action === "Signupname" || e.action === "Signinname") theEmail = e.username.replace(/ /g, '') + "@" + e.domain;
+                    else theEmail = e.email;
+
+                    firebase._LoginByEvent[e.sdkName] = 1;
+
+                    await firebase.auth[signFunc](auth, theEmail, e.password).then((userCredential) => {
+                        var cred = new firebase.auth.EmailAuthCredential(theEmail, e.password, "password");
+
+                        var authMapRes = firebase._GetAuthMapData(userCredential.user, e.sdkName);
+                        RESULT.userBasic = authMapRes.authExpBasic;
+                        RESULT.userPro = authMapRes.authExpPro;
+
+                        RESULT.cred = JSON.stringify(cred);
+                        RESULT.success = 1;
+                    }).catch((error) => {
+                        firebase._LoginByEvent[e.sdkName] = 0;
+
+                        RESULT.success = 0;
+                        RESULT.errorCode = error.code;
+                        RESULT.errorMessage = error.message;
+                    })
+                    if (e.action === "Signupname" && RESULT.success) {
+                        await firebase.auth.updateProfile(firebase._res[e.sdkName].user, { displayName: e.username }).then(() => {
+                            RESULT.nameChange = 1;
+                        }).catch((error) => {
+                            RESULT.nameChange = 0;
+                            RESULT.errorCode = error.code;
+                            RESULT.errorMessage = error.message;
+                        });
+                    }
+                }
+                else if (e.action === "VerifyEmail") {
+                    await firebase.auth.sendEmailVerification(firebase._res[e.sdkName].user).then(() => {
+                        RESULT.success = 1;
+                    }).catch((error) => {
+                        RESULT.success = 0;
+                        RESULT.errorCode = error.code;
+                        RESULT.errorMessage = error.message;
+                    })
+                }
+                else if (e.action === "UpdateEmail") {
+                    await firebase.auth.updateEmail(firebase._res[e.sdkName].user, e.newEmail).then(() => {
+                        RESULT.success = 1;
+                    }).catch((error) => {
+                        RESULT.success = 0;
+                        RESULT.errorCode = error.code;
+                        RESULT.errorMessage = error.message;
+                    });
+                }
+                else if (e.action === "ResetPassword") {
+                    await firebase.auth.sendPasswordResetEmail(auth, e.email).then(() => {
+                        RESULT.success = 1;
+                    }).catch((error) => {
+                        RESULT.success = 0;
+                        RESULT.errorCode = error.code;
+                        RESULT.errorMessage = error.message;
+                    });
+                }
+                else if (e.action === "UpdatePassword") {
+                    await firebase.auth.updatePassword(firebase._res[e.sdkName].user, e.password).then(() => {
+                        RESULT.success = 1;
+                    }).catch((error) => {
+                        RESULT.success = 0;
+                        RESULT.errorCode = error.code;
+                        RESULT.errorMessage = error.message;
+                    });
+                }
+                else if (e.action === "RenderRecaptcha") {
+
+                    var reCaptchaObj = document.getElementById("SparshaFirebaseCaptcha");
+                    if (reCaptchaObj === null) {
+                        reCaptchaObj = document.createElement("BUTTON");
+                        reCaptchaObj.display = "none";
+                        reCaptchaObj.id = "SparshaFirebaseCaptcha";
+                        document.body.appendChild(reCaptchaObj);
+                    }
+                    firebase._CaptchaVerifier = new firebase.auth.RecaptchaVerifier('SparshaFirebaseCaptcha', {
+                        'size': 'invisible',
+                        'theme': e.theme
+                    }, auth);
+                    await firebase._CaptchaVerifier.render().then((widgetId) => {
+                        firebase._RecaptchaWidgetId = widgetId; //only for reCAPTCHA API Calls
+                        RESULT.success = 1;
+                    }).catch((error) => {
+                        RESULT.success = 0;
+                        RESULT.errorCode = error.code;
+                        RESULT.errorMessage = error.message;
+                    });
+
+                }
+                else if (e.action === "SendPhoneNumber") {
+                    await firebase.auth.signInWithPhoneNumber(auth, e.phoneNumber, firebase._CaptchaVerifier).then((confirmationResult) => {
+                        firebase._ConfirmationResult = confirmationResult;
+                        RESULT.success = 1;
+                    }).catch((error) => {
+                        RESULT.success = 0;
+                        RESULT.errorCode = error.code;
+                        RESULT.errorMessage = error.message;
+                    });
+                }
+                else if (e.action === "SubmitOtp") {
+                    firebase._LoginByEvent[e.sdkName] = 1;
+                    await firebase._ConfirmationResult.confirm(e.otp).then((result) => {
+                        RESULT.isNewUser = firebase.auth.getAdditionalUserInfo(result).isNewUser;
+                        RESULT.cred = firebase.auth.PhoneAuthProvider.credential(firebase._ConfirmationResult.verificationId, e.otp);
+                        var authMapRes = firebase._GetAuthMapData(result.user, e.sdkName);
+                        RESULT.userBasic = authMapRes.authExpBasic;
+                        RESULT.userPro = authMapRes.authExpPro;
+                        RESULT.cred = JSON.stringify(RESULT.cred);
+                        RESULT.success = 1;
+                    }).catch((error) => {
+                        firebase._LoginByEvent[e.sdkName] = 0;
+                        RESULT.success = 0;
+                        RESULT.errorCode = error.code;
+                        RESULT.errorMessage = error.message;
+                    });
+                }
+                else if (e.action === "SignOut") {
+                    await firebase.auth.signOut(auth).then(() => {
+                        RESULT.success = 1;
+                    }).catch((error) => {
+                        RESULT.success = 0;
+                        RESULT.errorCode = error.code;
+                        RESULT.errorMessage = error.message;
+                    });
+                    if (typeof window.cordova !== "undefined") {
+                        if (typeof window.cordova.plugins !== "undefined") {
+                            if (typeof window.cordova.plugins.firebase !== "undefined") await window.cordova.plugins.firebase.auth.signOut();
+                        }
+                    }
+                    if (typeof window.plugins !== "undefined") {
+                        if (typeof window.plugins.googleplus !== "undefined") await window.plugins.googleplus.logout();
+                    }
+                    if (typeof window.facebookConnectPlugin !== "undefined") await window.facebookConnectPlugin.logout();
+                }
+                else if (e.action === "UpdateUsername") {
+                    await firebase.auth.updateProfile(firebase._res[e.sdkName].user, e.updateProfOb).then(() => {
+                        RESULT.success = 1;
+                    }).catch((error) => {
+                        RESULT.success = 0;
+                        RESULT.errorCode = error.code;
+                        RESULT.errorMessage = error.message;
+                    });
+                }
+                else if (e.action === "DeleteUser") {
+                    await firebase.auth.deleteUser(firebase._res[e.sdkName].user).then(() => {
+                        RESULT.success = 1;
+                    }).catch((error) => {
+                        RESULT.success = 0;
+                        RESULT.errorCode = error.code;
+                        RESULT.errorMessage = error.message;
+                    });
+                }
+                else if (e.action === "PopupOauth") {
+                    firebase._LoginByEvent[e.sdkName] = 1;
+                    var provider;
+                    if (e.providerNo === 0) {
+                        provider = new firebase.auth.GoogleAuthProvider();
+                        if(e.googlePromptSelect){
+                        	provider["setCustomParameters"]({
+  								"prompt": "select_account",
+							});
+                        }
+                    }
+                    else if (e.providerNo === 1) provider = new firebase.auth.FacebookAuthProvider();
+                    else if (e.providerNo === 2) provider = new firebase.auth.OAuthProvider('apple.com');
+                    else if (e.providerNo === 3) provider = new firebase.auth.TwitterAuthProvider();
+                    else if (e.providerNo === 4) provider = new firebase.auth.GithubAuthProvider();
+                    else if (e.providerNo === 5) provider = new firebase.auth.OAuthProvider('microsoft.com');
+                    else if (e.providerNo === 6) provider = new firebase.auth.OAuthProvider('yahoo.com');
+
+                    var authResult;
+                    await firebase.auth.signInWithPopup(auth, provider).then((result) => {
+                        RESULT.isNewUser = firebase.auth.getAdditionalUserInfo(result).isNewUser;
+                        authResult = result;
+                        var authMapRes = firebase._GetAuthMapData(result.user, e.sdkName);
+                        RESULT.userBasic = authMapRes.authExpBasic;
+                        RESULT.userPro = authMapRes.authExpPro;
+
+                        if (e.providerNo === 0) RESULT.cred = firebase.auth.GoogleAuthProvider.credentialFromResult(result);
+                        else if (e.providerNo === 2) RESULT.cred = firebase.auth.OAuthProvider.credentialFromResult(result);
+                        else if (e.providerNo === 3) RESULT.cred = firebase.auth.TwitterAuthProvider.credentialFromResult(result);
+                        else if (e.providerNo === 4) RESULT.cred = firebase.auth.GithubAuthProvider.credentialFromResult(result);
+                        else if (e.providerNo >= 5) RESULT.cred = firebase.auth.OAuthProvider.credentialFromResult(result);
+                        RESULT.cred = JSON.stringify(RESULT.cred);
+                        RESULT.success = 1;
+                    }).catch((error) => {
+                        firebase._LoginByEvent[e.sdkName] = 0;
+                        RESULT.success = 0;
+                        RESULT.errorCode = error.code;
+                        RESULT.errorMessage = error.message;
+                        //const email = error.email;
+                        //const credential = FacebookAuthProvider.credentialFromError(error);
+                    });
+                    if (e.providerNo === 1 && RESULT.success === 1) {
+                        RESULT.cred = firebase.auth.FacebookAuthProvider.credentialFromResult(authResult);
+
+                        var user = authResult.user;
+                        var newPic = user.photoURL.split('?')[0] + "?access_token=" + RESULT.cred.accessToken;
+                        RESULT.cred = JSON.stringify(RESULT.cred);
+
+                        await firebase.auth.updateProfile(firebase._res[e.sdkName].user, { photoURL: newPic }).then(() => {
+                            RESULT.picChange = 1;
+                            RESULT.newPicUrl = newPic;
+                        }).catch((error) => {
+                            RESULT.picChange = 0;
+                            RESULT.errorCode = error.code;
+                            RESULT.errorMessage = error.message;
+                        });
+                    }
+
+                }
+
+                return RESULT;
+            }
+
+            function DoSync(e) {
+                if (e.action === "RemoveRecaptcha") {
+                    var style = document.createElement('style');
+                    style.innerHTML = ".grecaptcha-badge{visibility: hidden;}"
+                    document.head.appendChild(style);
+                }
+                else if (e.action === "PopupOauthSafe") {
+                    var RESULT = e;
+                    RESULT.success=0;
+                    var firebase = globalThis.sparshaFirebase;
+                    var auth = firebase.myAuth[e.sdkName];
+
+                    window.document.getElementById(e.buttonId).onclick = function() {PopupOauthSafe_Func()};
+
+                    function PopupOauthSafe_Func() {
+                        var provider;
+                        if (e.providerNo === 0) {
+                        	provider = new firebase.auth.GoogleAuthProvider();
+                        	if(e.googlePromptSelect){
+                        		provider["setCustomParameters"]({
+  									"prompt": "select_account",
+								});
+                        	}
+                        }
+                        else if (e.providerNo === 1) provider = new firebase.auth.FacebookAuthProvider();
+                        else if (e.providerNo === 2) provider = new firebase.auth.OAuthProvider('apple.com');
+                        else if (e.providerNo === 3) provider = new firebase.auth.TwitterAuthProvider();
+                        else if (e.providerNo === 4) provider = new firebase.auth.GithubAuthProvider();
+                        else if (e.providerNo === 5) provider = new firebase.auth.OAuthProvider('microsoft.com');
+                        else if (e.providerNo === 6) provider = new firebase.auth.OAuthProvider('yahoo.com');
+
+                        var authResult;
+                        firebase.auth.signInWithPopup(auth, provider).then((result) => {
+                            RESULT.isNewUser = firebase.auth.getAdditionalUserInfo(result).isNewUser;
+                            authResult = result;
+                            var authMapRes = firebase._GetAuthMapData(result.user, e.sdkName);
+                            RESULT.userBasic = authMapRes.authExpBasic;
+                            RESULT.userPro = authMapRes.authExpPro;
+                            RESULT.success = 1;
+                            if (e.providerNo === 0) RESULT.cred = firebase.auth.GoogleAuthProvider.credentialFromResult(result);
+                            else if (e.providerNo === 1) {
+                                RESULT.cred = firebase.auth.FacebookAuthProvider.credentialFromResult(authResult);
+
+                                var user = authResult.user;
+                                var newPic = user.photoURL.split('?')[0] + "?access_token=" + RESULT.cred.accessToken;
+                                RESULT.cred = JSON.stringify(RESULT.cred);
+
+                                firebase.auth.updateProfile(firebase._res[e.sdkName].user, { photoURL: newPic }).then(() => {
+                                    RESULT.picChange = 1;
+                                    RESULT.newPicUrl = newPic;
+                                    self.PostToRuntime("run_sparsha_fAuthBasic" + e.plugin_uid, RESULT);
+                                }).catch((error) => {
+                                    RESULT.picChange = 0;
+                                    RESULT.errorCode = error.code;
+                                    RESULT.errorMessage = error.message;
+                                    self.PostToRuntime("run_sparsha_fAuthBasic" + e.plugin_uid, RESULT);
+                                });
+                            }
+                            else if (e.providerNo === 2) RESULT.cred = firebase.auth.OAuthProvider.credentialFromResult(result);
+                            else if (e.providerNo === 3) RESULT.cred = firebase.auth.TwitterAuthProvider.credentialFromResult(result);
+                            else if (e.providerNo === 4) RESULT.cred = firebase.auth.GithubAuthProvider.credentialFromResult(result);
+                            else if (e.providerNo >= 5) RESULT.cred = firebase.auth.OAuthProvider.credentialFromResult(result);
+                            RESULT.cred = JSON.stringify(RESULT.cred);
+                            self.PostToRuntime("run_sparsha_fAuthBasic" + e.plugin_uid, RESULT);
+                        }).catch((error) => {
+                            RESULT.success = 0;
+                            RESULT.errorCode = error.code;
+                            RESULT.errorMessage = error.message;
+                            self.PostToRuntime("run_sparsha_fAuthBasic" + e.plugin_uid, RESULT);
+                            //const email = error.email;
+                            //const credential = FacebookAuthProvider.credentialFromError(error);
+                        });
+                    }
+
+                }
+            }
+
+            this.AddRuntimeMessageHandler("domSync_sparsha_fAuth", DoSync);
+            this.AddRuntimeMessageHandler("domAsync_sparsha_fAuth", DoAsync);
+        }
+    };
+    self.RuntimeInterface.AddDOMHandlerClass(HANDLER_CLASS);
+}
